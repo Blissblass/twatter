@@ -18,9 +18,8 @@ class LikesController < ApplicationController
     end
   end
 
-  def destroy 
-    @like = Like.find_by(params[:id])
-    @like.destroy
+  def destroy
+    Like.destroy(params[:id])
   end
 
   private

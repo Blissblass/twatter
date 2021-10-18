@@ -8,14 +8,14 @@ const Post = (props) => {
   const [likeData, setLikeData] = useState(null);
   const [body, setBody] = useState(props.post.body);
 
-  useEffect(() => {
+  useEffect(async () => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const data = {
       "id": props.post.id,
       "user_id": props.currUser.id
     }
 
-    fetch(`/api/twat_exists`, {
+    await fetch(`/api/twat_exists`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -25,11 +25,14 @@ const Post = (props) => {
     })
     .then(data => data.json())
     .then(data => {
+      console.log(data);
       if(data.length > 0) {
         setLikeData(data[0]);
         setLiked(true);
         return true;
       }
+      setLikeData([{}])
+      return false;
     });
   }, []);
   
@@ -66,7 +69,7 @@ const Post = (props) => {
         "user_id": props.currUser.id,
         "twat_id": props.post.id
         } 
-      }
+      };
       
     if(postLiked) {
       fetch(`/likes/${likeData.id}`, {
@@ -76,6 +79,8 @@ const Post = (props) => {
           'X-CSRF-Token': CSRF
         },
       }).then(setLiked(false));
+      console.log(likeData);
+      console.log(`sending DELETE request to: /likes/${likeData.id}`);
     } else {
       fetch(`/likes`, {
         method: 'POST',
