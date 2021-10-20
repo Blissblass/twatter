@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = props => {
  
-  let [currUser, setCurrUser] = useState(null);
+  let [currUser, setCurrUser] = useState({id: null, username: null});
 
   useEffect(() => {
     fetch('http://127.0.0.1:3000/api/current_user', {

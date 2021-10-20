@@ -13,7 +13,7 @@ You can find the schemas for this project under the /schemas folder!
 
 * ~~Liking a post works as intended, however disliking a post will dislike another, random post.~~
  * ~~Cause: The pointer to the correct post is distributed wrongly.(?)~~
- * Solution: ~~*Nothing so far, will take a second look at the code later.* ~~
+ * Solution: *~~Nothing so far, will take a second look at the code later.~~* 
 **FIXED** 
  
 
