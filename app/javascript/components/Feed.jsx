@@ -24,10 +24,10 @@ const Feed = props => {
 
   return(
     <div className="row justify-content-center mx-0" >
-      {props.posts.map(post=> (
-        <Post key={post.id} post={post} handleDelete={handleDelete} currUser={props.currUser}/>
-      )
-      )}
+        {props.posts ? props.posts.map(post=> (
+          <Post key={post.id} post={post} handleDelete={handleDelete} currUser={props.currUser}/>
+          )
+        ) : <div className="card col-md-6 m-4 text-center"><h3>No posts available :/</h3></div>}
     </div>
   )
 };

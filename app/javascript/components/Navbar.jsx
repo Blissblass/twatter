@@ -6,7 +6,7 @@ const navbar = (props) => {
   let currUser = props.currUser
 
   useEffect(() => {
-  }, [currUser]);
+  }, []);
 
   const handleLogout = () => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content")

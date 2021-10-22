@@ -6,7 +6,7 @@ You can find the schemas for this project under the /schemas folder!
 
 ### KNOWN BUGS
 
-*~~Rails returns the right posts to the Home component, but React can't access the posts id~~
+* ~~Rails returns the right posts to the Home component, but React can't access the posts id~~
   * ~~Possible cause: Rails is returning the posts in a weird format(?)~~ **FIXED!**
 
 **Text isn't refactored yet, so it might be a little messy!**

@@ -15,7 +15,7 @@ const Post = (props) => {
       "user_id": props.currUser.id
     }
 
-    if(props.post) {
+    if(props.post && props.currUser) {
       fetch(`/api/twat_exists`, {
         method: 'POST',
         headers: {
