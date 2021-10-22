@@ -8,32 +8,33 @@ const Post = (props) => {
   const [likeData, setLikeData] = useState(null);
   const [body, setBody] = useState(props.post.body);
 
-  useEffect(async () => {
+  useEffect(() => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const data = {
       "id": props.post.id,
       "user_id": props.currUser.id
     }
 
-    await fetch(`/api/twat_exists`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': CSRF
-      },
-      body: JSON.stringify(data)
-    })
-    .then(data => data.json())
-    .then(data => {
-      console.log(data);
-      if(data.length > 0) {
-        setLikeData(data[0]);
-        setLiked(true);
-        return true;
-      }
-      setLikeData([{}])
-      return false;
-    });
+    if(props.post) {
+      fetch(`/api/twat_exists`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': CSRF
+        },
+        body: JSON.stringify(data)
+      })
+      .then(data => data.json())
+      .then(data => {
+        if(data.length > 0) {
+          setLikeData(data[0]);
+          setLiked(true);
+          return true;
+        }
+        setLikeData([{}])
+        return false;
+      });
+    }
   }, []);
   
 

@@ -4,7 +4,7 @@ import Post from "./Post";
 const Feed = props => {
 
   useEffect(() => {
-
+    
   }, [props.posts]);
   
 

@@ -30,25 +30,29 @@ const Profile = (props) => {
       setProfPosts(data.twats);
     });
 
-    fetch('/api/already_following', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': CSRF
-      },
-      body: JSON.stringify({
-        "follower_id": props.currUser.id,
-        "followee_id": userId
-      })
-    })
-    .then(data => data.json())
-    .then(data => {
-      if(data) {
-        setFollowing(true);
-      };
-    });
-
   }, []);
+
+  useEffect(() => {
+    if(props.currUser) {
+      fetch('/api/already_following', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': CSRF
+        },
+        body: JSON.stringify({
+          "follower_id": props.currUser.id,
+          "followee_id": userId
+        })
+      })
+      .then(data => data.json())
+      .then(data => {
+        if(data) {
+          setFollowing(true);
+        };
+      });
+    }
+  }, [props.currUser]);
 
   const handleSubscription = (e) => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");

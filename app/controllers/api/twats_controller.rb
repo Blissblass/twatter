@@ -20,4 +20,23 @@ class Api::TwatsController < ApplicationController
     end
   end
 
+  def home_twats
+    @twats = []
+    current_user.follows.each do |f|
+      preload = Twat.all.where(user_id: f.followee_id).includes(:user).order(created_at: :desc)
+      user_twats = preload.map do |twat|
+        twat.attributes.merge(
+          'poster' => twat.user.username
+        )
+      end
+      @twats << user_twats
+    end
+    
+    if @twats
+      render json: @twats, status: 200
+    else
+      render json: {"error" => "#{current_user.username}, please follow another user to see posts on your timeline!"}, status: 404
+    end
+  end
+
 end

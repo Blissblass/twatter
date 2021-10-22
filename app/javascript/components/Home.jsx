@@ -6,7 +6,7 @@ const Home = (props) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(async () => {
-    fetch('/api/get_posts', {
+    fetch('/api/get_home_feed', {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -15,7 +15,7 @@ const Home = (props) => {
       }
     })
     .then(data => data.json())
-      .then(data => setPosts(data));
+      .then(data => {setPosts(data); console.log(data)});
   }, [])
 
   return(
