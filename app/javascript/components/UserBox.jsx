@@ -18,10 +18,15 @@ const UserBox = (props) => {
     onMouseLeave={() => setHover(false)}
     onMouseDown={handleClick}
     onClick={handleClick}
-    style={{backgroundColor: hover ? '#e9e9e9' : 'white', cursor: hover ? 'pointer' : ''}} 
-    className="card position-relative"
+    style={{backgroundColor: hover ? '#e9e9e9' : 'white', cursor: hover ? 'pointer' : '', width: 300}} 
+    className="card position-relative text-center"
     >
-      <h6>{props.user.username}</h6>
+      {
+      props.user.id == props.currUser.id ? 
+        <h6>{props.user.username} <em>(You)</em></h6> 
+          :
+        <h6>{props.user.username}</h6>
+      }
     </div>
   )
 };

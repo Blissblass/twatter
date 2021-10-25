@@ -44,7 +44,7 @@ const NavbarForm = (props) => {
 
         </FormControl>
       <div className="position-absolute">
-        <FormResults setQueryStr={setQueryStr} users={users} />
+        <FormResults setQueryStr={setQueryStr} users={users} currUser={props.currUser} />
       </div>
     </Form>
   )

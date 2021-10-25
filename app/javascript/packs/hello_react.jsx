@@ -7,7 +7,6 @@ import { LoginRedirect, SignupRedirect } from '../components/AuthRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../assets/stylesheets/application.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory';
 
 const App = props => {
  
