@@ -19,4 +19,4 @@ const FormResults = (props) => {
   }
 };
 
-export default withRouter(FormResults);
+export default FormResults;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory, withRouter } from 'react-router-dom';
 
 const UserBox = (props) => {
 
@@ -26,4 +26,4 @@ const UserBox = (props) => {
   )
 };
 
-export default UserBox;
+export default withRouter(UserBox);

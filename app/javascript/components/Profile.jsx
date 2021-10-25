@@ -30,7 +30,7 @@ const Profile = (props) => {
       setProfPosts(data.twats);
     });
 
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     fetch('/api/already_following', {
