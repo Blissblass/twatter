@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     post '/get_user_profile' => 'user#get_user_profile'
     post '/twat_exists' => 'twats#twat_exists'
     get '/get_home_feed' => 'twats#home_twats'
+    post '/search_user' => 'user#search_for_user'
   end
 end

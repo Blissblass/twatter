@@ -27,7 +27,7 @@ const Feed = props => {
         {props.posts ? props.posts.map(post=> (
           <Post key={post.id} post={post} handleDelete={handleDelete} currUser={props.currUser}/>
           )
-        ) : <div className="card col-md-6 m-4 text-center"><h3>No posts available :/</h3></div>}
+        ) : <div className="card col-md-6 m-4 text-center"><h3 className="p-4">No posts available :/</h3></div>}
     </div>
   )
 };

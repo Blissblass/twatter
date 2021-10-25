@@ -18,7 +18,6 @@ const TwatBox = props => {
       twat: {
         body: target.value,
         user_id: props.currUser.id,
-        poster: props.currUser.username
       }
     };
     fetch('/twats', {
@@ -35,12 +34,12 @@ const TwatBox = props => {
   };
 
   return(
-    <div className="card col-md-6">
+    <div className="card col-md-6 mx-0 mt-2">
       <h3>Welcome, {props.currUser.username}</h3>
       <form onSubmit={handleSubmit}>
         <textarea value={body} onChange={(e) => setBody(e.currentTarget.value) } className="form-control" style={{resize:"none"}} placeholder="Twat something on your mind..."></textarea>
         <p>{body.length}/250</p>
-        <Button type="submit" disabled={body.length > 250 || body.length == 0}>Twat</Button>
+        <Button type="submit" disabled={body.length > 250 || body.length == 0} className="m-1">Twat</Button>
       </form>
     </div>
   );

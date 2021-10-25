@@ -24,4 +24,16 @@ class Api::UserController < ApplicationController
     end
   end
 
+  def search_for_user
+    return render json: [] if params[:query].length < 3
+
+    @users = User.where("username LIKE ?", "%#{params[:query]}%")
+
+    if @users
+      render json: @users, status: 200
+    else
+      render body: nil
+    end
+  end
+
 end

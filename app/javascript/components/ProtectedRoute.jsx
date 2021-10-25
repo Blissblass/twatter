@@ -1,11 +1,18 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import Home from './Home';
+import Profile from './Profile'
 
 const ProtectedRoute = (props) => {
   return(
-  props.currUser ? <Home currUser={props.currUser} /> : <Redirect to ="/login" />
+    props.currUser.id ? <Home currUser={props.currUser} /> : <Redirect to ="/login" />
   )
 };
 
-export default ProtectedRoute;
+const ProfileRedirect = (props) => {
+  return(
+    props.currUser ? <Profile currUser={props.currUser} /> : <Redirect to="/" /> 
+  )
+};
+
+export { ProtectedRoute, ProfileRedirect }

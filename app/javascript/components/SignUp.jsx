@@ -24,18 +24,6 @@ const SignUp = () => {
       body: JSON.stringify(userData)
     });
     props.setCurrUser(userData);
-
-    // await fetch('http://127.0.0.1:3000/api/current_user', {
-    //   method: 'GET',
-    //   credentials: 'include',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
-    // .then(data => data.json())
-    //   .then(data => props.setCurrUser(data))
-    // .catch(err => console.log(`Err: ${err.json()}`))
   };
   
 
@@ -48,7 +36,7 @@ const SignUp = () => {
             <label  htmlFor="user[username]" className="form-label text-med">Username</label>
             <div className="input-group mb-3">
               <div className="input-group-prepend"> 
-                <span class="input-group-text" id="basic-addon1">@</span>
+                <span className="input-group-text" id="basic-addon1">@</span>
               </div>
               <input  type="text"          className="form-control" id="user[username]" placeholder="Username" aria-describedby="basic-addon1" />
             </div>

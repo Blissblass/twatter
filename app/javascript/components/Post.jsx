@@ -35,7 +35,7 @@ const Post = (props) => {
         return false;
       });
     }
-  }, []);
+  }, [props.currUser.id]);
   
 
   const handleDisplay = () => {
@@ -97,7 +97,7 @@ const Post = (props) => {
 
   return(
     <div className="card col-md-6 m-4">
-      <h3><Link style={{textDecoration:"none"}} to={`/user/${props.post.user_id}`}>Post by: {props.post.poster} {props.post.id}</Link></h3>
+      <h3><Link style={{textDecoration:"none"}} to={`/user/${props.post.user_id}`}>Post by: {props.post.poster}</Link></h3>
       <h3 style={{display: !statDisplay ? "block" : "none"}}>{props.post.body}</h3>
       <textarea className="form-control" style={{display: statDisplay ? "block" : "none"}} value={body} onChange={handleChange}></textarea>
       

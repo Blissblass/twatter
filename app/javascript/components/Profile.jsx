@@ -33,8 +33,7 @@ const Profile = (props) => {
   }, []);
 
   useEffect(() => {
-    if(props.currUser) {
-      fetch('/api/already_following', {
+    fetch('/api/already_following', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,8 +50,7 @@ const Profile = (props) => {
           setFollowing(true);
         };
       });
-    }
-  }, [props.currUser]);
+  }, [props.currUser.id]);
 
   const handleSubscription = (e) => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");

@@ -5,7 +5,7 @@ import Feed from './Feed';
 const Home = (props) => {
   const [posts, setPosts] = useState([]);
 
-  useEffect(async () => {
+  useEffect(() => {
     fetch('/api/get_home_feed', {
       method: 'GET',
       credentials: 'include',
@@ -20,7 +20,7 @@ const Home = (props) => {
 
   return(
     <div>
-      <div className="row justify-content-center mt-2 mx-0" style={{height:300}}>
+      <div className="row justify-content-center mt-10 mx-0" style={{height:300}}>
         <TwatBox currUser={props.currUser} setPosts={setPosts} />
         <Feed posts={posts} currUser={props.currUser} setPosts={setPosts} />
       </div>

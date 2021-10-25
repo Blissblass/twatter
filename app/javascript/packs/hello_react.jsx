@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import Navbar from '../components/Navbar';
 import Profile from '../components/Profile';
-import ProtectedRoute from '../components/ProtectedRoute';
+import { ProtectedRoute, ProfileRedirect } from '../components/ProtectedRoute';
 import { LoginRedirect, SignupRedirect } from '../components/AuthRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../assets/stylesheets/application.css';
@@ -35,7 +35,7 @@ const App = props => {
         <Route exact path="/" render={(props) => <ProtectedRoute {...props} currUser={currUser} />} />
         <Route exact path="/login" render={(props) => <LoginRedirect {...props} currUser={currUser} setCurrUser={setCurrUser} />} />
         <Route exact path="/signUp" render={(props) => <SignupRedirect {...props} currUser={currUser} setCurrUser={setCurrUser}/>} />
-        <Route exact path="/user/:id" render={(props) => <Profile {...props} currUser={currUser} />} />            
+        <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} currUser={currUser} />} />            
       </Switch>
     </Router>
   </div>

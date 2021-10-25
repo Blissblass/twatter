@@ -6,13 +6,13 @@ import SignUp from "./SignUp"
 
 const LoginRedirect = (props) => {
   return(
-    props.currUser ? <Redirect to="/" /> : <Login setCurrUser={props.setCurrUser} /> 
+    props.currUser.id ? <Redirect to="/" /> : <Login setCurrUser={props.setCurrUser} /> 
   )
 };
 
 const SignupRedirect = (props) => {
   return(
-    props.currUser ? <Redirect to="/" /> : <SignUp setCurrUser={props.setCurrUser} /> 
+    props.currUser.id ? <Redirect to="/" /> : <SignUp setCurrUser={props.setCurrUser} /> 
   )
 }
 
@@ -22,4 +22,4 @@ const AuthRoute = props => {
   )
 };
 
-export { LoginRedirect, SignupRedirect, AuthRoute }
+export { LoginRedirect, SignupRedirect }
