@@ -2,8 +2,10 @@ class Api::UserController < ApplicationController
 
   def get_current_user
     @user = current_user
+    
     if @user
-      render json: @user
+      data = {username: @user.username, id: @user.id, image: url_for(@user.image)}
+      render json: data
     else
       render body: nil, status: 404
     end
@@ -13,12 +15,12 @@ class Api::UserController < ApplicationController
     @user = User.includes(:twats).find_by(id: params[:id])
     @twats = @user.twats.order(created_at: :desc).map do |twat|
       twat.attributes.merge(
-        'poster' => @user.username
+        'poster' => @user.username,
       )
     end
 
     if @user
-      render json: { user: @user, twats: @twats }
+      render json: { user: @user, twats: @twats, image: url_for(@user.image) }
     else
       render body: nil, status: 404
     end

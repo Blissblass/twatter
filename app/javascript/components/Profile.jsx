@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 const Profile = (props) => {
   const [profUser, setProfUser] = useState({});
   const [profPosts, setProfPosts] = useState([]);
+  const [profImage, setProfImage] = useState("");
   const [isFollowing, setFollowing] = useState(false);
   
 
@@ -28,6 +29,7 @@ const Profile = (props) => {
     .then(data => { 
       setProfUser(data.user);
       setProfPosts(data.twats);
+      setProfImage(data.image);
     });
 
   }, [userId]);
@@ -86,15 +88,21 @@ const Profile = (props) => {
   };
 
   return(
-    <div className="row justify-content-center mx-0">
-      <div className="card col-md-6 m-4">
-        <h1>{profUser.username}'s profile</h1>
-
+   
+    <div className="row justify-content-center mx-0 mt-3">
+      <div className="card col-md-6 m-4 mw-100"> 
+        <div className="row"> 
+          <div className="col-md-8 col-sm-8">
+            <img src={profImage} alt="User's profile image" className="rounded w-25" style={{}} />
+          </div>
+        </div>
+        <h1 className="card-text">@{profUser.username}</h1>
         <Button style={{display: ownProfile ? "none" : "block"}} onClick={handleSubscription}>
           {isFollowing ? "Remove Follow" : "Follow" }
         </Button>
 
       </div>
+      
       <Feed posts={profPosts} currUser={props.currUser} />
     </div>
   )

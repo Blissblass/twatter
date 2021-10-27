@@ -1,6 +1,6 @@
 import React from "react";
 
-const SignUp = () => {
+const SignUp = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,9 +22,22 @@ const SignUp = () => {
         'X-CSRF-Token': CSRF
       },
       body: JSON.stringify(userData)
-    });
-    props.setCurrUser(userData);
-  };
+    })
+
+    await fetch('http://127.0.0.1:3000/api/current_user', {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(data => data.json())
+      .then(data => {
+        props.setCurrUser(data)})
+    .catch(err => console.log(`Err: ${err}`))
+  }
+
   
 
   return(

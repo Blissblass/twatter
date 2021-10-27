@@ -23,7 +23,7 @@ const App = props => {
     })
     .catch(err => console.log(err))
     .then(data => data.json())
-      .then(data => setCurrUser(data))
+      .then(data => {setCurrUser(data); console.log(data)});
   }, []);
 
  return(

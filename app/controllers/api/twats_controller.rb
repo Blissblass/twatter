@@ -24,19 +24,18 @@ class Api::TwatsController < ApplicationController
     @twats = []
 
     current_user.follows.each do |f|
-      preload = Twat.all.where(user_id: f.followee_id)
-                  .or(Twat.all.where(user_id: current_user.id))
+      preload = Twat.all.where(user_id: f.followee_id).or(Twat.all.where(user_id: current_user.id))
                     .includes(:user).order(created_at: :desc)
 
                     
       user_twats = preload.map do |twat|
         twat.attributes.merge(
-          'poster' => twat.user.username
+          'poster' => twat.user.username,
+          'image' =>  url_for(twat.user.image)
         )
       end
       @twats << user_twats
     end
-    @twats << current_user.twats
     
     if @twats
       render json: @twats, status: 200

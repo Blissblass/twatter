@@ -12,25 +12,33 @@ const TwatBox = props => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setBody("");
+
     const target = e.currentTarget[0];
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const data = {
       twat: {
         body: target.value,
         user_id: props.currUser.id,
-      }
+      } 
     };
+    
     fetch('/twats', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-CSRF-Token': CSRF
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data["twat"])
     })
       .catch(err => console.log(err))
-      .then(newData => props.setPosts(oldPosts => [data.twat, ...oldPosts]));
+      .then(data => data.json())
+      .then(data => {
+        data.poster = props.currUser.username;
+        data.image = props.currUser.image
+        props.setPosts(oldPosts => [data, ...oldPosts])
+      })
 
+      // props.setPosts(oldPosts => [data.twat, ...oldPosts])
   };
 
   return(
