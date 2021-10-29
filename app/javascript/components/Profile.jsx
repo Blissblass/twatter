@@ -97,9 +97,21 @@ const Profile = (props) => {
           </div>
         </div>
         <h1 className="card-text">@{profUser.username}</h1>
-        <Button style={{display: ownProfile ? "none" : "block"}} onClick={handleSubscription}>
-          {isFollowing ? "Remove Follow" : "Follow" }
-        </Button>
+
+        {!ownProfile ?
+
+          <Button onClick={handleSubscription}>
+            {isFollowing ? "Remove Follow" : "Follow" }
+          </Button>
+
+          :
+
+          <Button>
+            Edit Profile
+          </Button> 
+        
+        }
+
 
       </div>
       
