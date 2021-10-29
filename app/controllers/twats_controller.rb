@@ -45,6 +45,6 @@ class TwatsController < ApplicationController
   private 
 
   def twat_parameters
-    params.require(:twat).permit(:body, :user_id)
+    params.require(:twat).permit(:id, :body, :user_id, :created_at, :updated_at)
   end
 end

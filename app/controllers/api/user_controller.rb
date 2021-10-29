@@ -38,4 +38,27 @@ class Api::UserController < ApplicationController
     end
   end
 
+  def change_user_image
+    return if params[:img].nil?
+
+    current_user.image.attach(io: params[:img], filename: "profPic#{current_user.id}", content_type: "image/jpg" )
+  end
+
+  def update_user
+    @user = current_user
+
+    if @user.update(user_params)
+      render json: @user 
+    else
+      render json: @user.errors.full_messages
+    end
+
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:username)
+  end
+
 end

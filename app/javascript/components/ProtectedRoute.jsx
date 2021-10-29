@@ -11,7 +11,7 @@ const ProtectedRoute = (props) => {
 
 const ProfileRedirect = (props) => {
   return(
-    props.currUser ? <Profile currUser={props.currUser} /> : <Redirect to="/" /> 
+    props.currUser ? <Profile setCurrUser={props.setCurrUser} currUser={props.currUser} /> : <Redirect to="/" /> 
   )
 };
 

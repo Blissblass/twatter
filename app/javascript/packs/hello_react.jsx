@@ -34,7 +34,7 @@ const App = props => {
         <Route exact path="/" render={(props) => <ProtectedRoute {...props} currUser={currUser} />} />
         <Route exact path="/login" render={(props) => <LoginRedirect {...props} currUser={currUser} setCurrUser={setCurrUser} />} />
         <Route exact path="/signUp" render={(props) => <SignupRedirect {...props} currUser={currUser} setCurrUser={setCurrUser}/>} />
-        <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} currUser={currUser} />} />            
+        <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} setCurrUser={setCurrUser} currUser={currUser} />} />            
       </Switch>
     </Router>
   </div>

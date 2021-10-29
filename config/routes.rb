@@ -17,5 +17,7 @@ Rails.application.routes.draw do
     post '/twat_exists' => 'twats#twat_exists'
     get '/get_home_feed' => 'twats#home_twats'
     post '/search_user' => 'user#search_for_user'
+    patch '/change_user_image' => 'user#change_user_image'
+    patch '/update_user' => 'user#update_user'
   end
 end
