@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import Navbar from '../components/Navbar';
+import UserFollows from '../components/UserFollows';
+import UserFollowers from '../components/UserFollowers';
 import { ProtectedRoute, ProfileRedirect } from '../components/ProtectedRoute';
 import { LoginRedirect, SignupRedirect } from '../components/AuthRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -33,7 +35,9 @@ const App = props => {
         <Route exact path="/" render={(props) => <ProtectedRoute {...props} currUser={currUser} />} />
         <Route exact path="/login" render={(props) => <LoginRedirect {...props} currUser={currUser} setCurrUser={setCurrUser} />} />
         <Route exact path="/signUp" render={(props) => <SignupRedirect {...props} currUser={currUser} setCurrUser={setCurrUser}/>} />
-        <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} setCurrUser={setCurrUser} currUser={currUser} />} />            
+        <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} setCurrUser={setCurrUser} currUser={currUser} />} />
+        <Route exact path="/user/:id/follows" render={(props) => <UserFollows {...props} />} />         
+        <Route exact path="/user/:id/followers" render={(props) => <UserFollowers {...props} />} />         
       </Switch>
     </Router>
   </div>

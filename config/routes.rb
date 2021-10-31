@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/login', to: 'pages#index'
   get '/signUp', to: 'pages#index'
   get '/user/:id', to: 'pages#index'
+  get '/user/:id/followers', to: 'pages#index'
+  get '/user/:id/follows', to: 'pages#index'
   
   namespace :api do 
     get '/current_user' => 'user#get_current_user'
@@ -18,6 +20,8 @@ Rails.application.routes.draw do
     post '/search_user' => 'user#search_for_user'
     patch '/change_user_image' => 'user#change_user_image'
     patch '/update_user' => 'user#update_user'
+    post '/user_follows' => 'user#get_user_follows'
+    post '/user_followers' => 'user#get_user_followers'
   end
 
   Rails.application.routes.draw do

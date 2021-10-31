@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Feed from "./Feed";
 import { withRouter } from "react-router";
+import { Link } from 'react-router-dom';
 import { Button } from "react-bootstrap";
 
 const Profile = (props) => {
@@ -17,7 +18,7 @@ const Profile = (props) => {
   const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
   const ownProfile = props.currUser.id == userId;
   const noChange = inputName == profUser.username && !inputFile
-
+  Link
   useEffect(() => {
     fetch(`/api/get_user_profile`, {
       method: 'POST',
@@ -127,6 +128,7 @@ const Profile = (props) => {
   }
 
 
+  // TODO: Refactor this shit !!! 150+ lines of code for one single component ????
   return(
    
     <div className="row justify-content-center mx-0 mt-3">
@@ -144,8 +146,16 @@ const Profile = (props) => {
         </div>
         <h1 className="card-text" style={{display: isEditing ? "none" : "block"}}>@{profUser.username}</h1> 
         <div className="d-flex">
-          <h4 style={{display: isEditing ? "none" : "block"}}>Followers: {addData.followers}</h4>
-          <h4 style={{display: isEditing ? "none" : "block"}} className="mx-2">Following: {addData.follows}</h4>
+          <h4 style={{display: isEditing ? "none" : "block"}}>
+            <Link style={{color:"black", textDecoration: "none"}}to={`/user/${profUser.id}/followers`}>
+              Followers: {addData.followers}
+            </Link>
+          </h4>
+          <h4 className="mx-2" style={{display: isEditing ? "none" : "block"}}>
+            <Link style={{color:"black", textDecoration: "none"}} to={`/user/${profUser.id}/follows`}>
+              Following: {addData.follows}
+            </Link>
+          </h4>
         </div>
         <input 
           type="text"

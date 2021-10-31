@@ -54,7 +54,25 @@ class Api::UserController < ApplicationController
     end
 
   end
-  
+
+  def get_user_followers
+    @user = User.find(params[:id])
+    @followers = @user.followers.map do |data|
+      mapUser = User.find(data.follower_id)
+      [mapUser, url_for(mapUser.image)]
+    end
+    render json: @followers
+  end
+
+  def get_user_follows
+    @user = User.find(params[:id])
+    @follows = @user.follows.map do |data|
+      mapUser = User.find(data.followee_id)
+      [mapUser, url_for(mapUser.image)]
+    end
+    render json: @follows
+  end
+
   private
 
   def user_params
