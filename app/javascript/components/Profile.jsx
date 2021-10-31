@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 const Profile = (props) => {
   const [profUser, setProfUser] = useState({});
   const [profPosts, setProfPosts] = useState([]);
-  const [profImage, setProfImage] = useState("");
+  const [addData, setAddData] = useState({image: null, follows: null, followers: null});
   const [isFollowing, setFollowing] = useState(false);
   const [isEditing, setEditing] = useState(false);
   const [inputName, setInputName] = useState({username: ""});
@@ -33,7 +33,7 @@ const Profile = (props) => {
     .then(data => { 
       setProfUser(data.user);
       setProfPosts(data.twats);
-      setProfImage(data.image);
+      setAddData(data.additionalData);
       setInputName(data.user.username);
     });
   }, [userId, props.currUser.username]);
@@ -133,7 +133,7 @@ const Profile = (props) => {
       <div className="card col-md-6 m-4 mw-100"> 
         <div className="row"> 
           <div className="col-md-8 col-sm-8">
-            <img src={profImage} alt="User's profile image" className="rounded w-25" style={{}} />
+            <img src={addData.image} alt="User's profile image" className="rounded w-25" style={{}} />
             <input 
             style={{display: isEditing ? "block" : "none"}} 
             type="file" 
@@ -143,6 +143,10 @@ const Profile = (props) => {
           </div>
         </div>
         <h1 className="card-text" style={{display: isEditing ? "none" : "block"}}>@{profUser.username}</h1> 
+        <div className="d-flex">
+          <h4 style={{display: isEditing ? "none" : "block"}}>Followers: {addData.followers}</h4>
+          <h4 style={{display: isEditing ? "none" : "block"}} className="mx-2">Following: {addData.follows}</h4>
+        </div>
         <input 
           type="text"
           className="form-control my-2" 

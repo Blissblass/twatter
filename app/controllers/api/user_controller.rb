@@ -20,7 +20,7 @@ class Api::UserController < ApplicationController
     end
 
     if @user
-      render json: { user: @user, twats: @twats, image: url_for(@user.image) }
+      render json: { user: @user, twats: @twats, additionalData: { image: url_for(@user.image), followers: @user.followers.count, follows: @user.follows.count } }
     else
       render body: nil, status: 404
     end
