@@ -16,7 +16,7 @@ const Login = (props) => {
 
     await fetch('/users/sign_in', {
       method: 'POST',
-      headers: {
+      headers:{
         'Content-Type': 'application/json',
         'X-CSRF-Token': CSRF
       },
@@ -34,7 +34,6 @@ const Login = (props) => {
     .then(data => data.json())
       .then(data => {
         props.setCurrUser(data)})
-    .catch(err => console.log(`Err: ${err}`))
   };
   
 

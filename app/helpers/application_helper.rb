@@ -1,6 +1,7 @@
 module ApplicationHelper
 
-  def get_user_with_twat(twats)
+  def flash_messages
+    flash.map { |type, msg| { id: msg.object_id, type: type, msg: msg } }
   end
 
 end

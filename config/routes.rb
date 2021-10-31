@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
   resources :twats
   resources :likes, only: [:index, :new, :create, :destroy]
   resources :follows, only: [:index ,:new, :create, :destroy]
@@ -20,4 +19,11 @@ Rails.application.routes.draw do
     patch '/change_user_image' => 'user#change_user_image'
     patch '/update_user' => 'user#update_user'
   end
+
+  Rails.application.routes.draw do
+    devise_for :users, controllers: {
+      sessions: 'users/sessions'
+    }
+  end
+
 end

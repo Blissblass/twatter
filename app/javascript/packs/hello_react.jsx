@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import Navbar from '../components/Navbar';
-import Profile from '../components/Profile';
 import { ProtectedRoute, ProfileRedirect } from '../components/ProtectedRoute';
 import { LoginRedirect, SignupRedirect } from '../components/AuthRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,11 +10,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 const App = props => {
  
   let [currUser, setCurrUser] = useState({id: null, username: null});
+  let [messages, setMessages] = useState([])
 
   useEffect(() => {
     fetch('http://127.0.0.1:3000/api/current_user', {
       method: 'GET',
-      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -23,13 +22,13 @@ const App = props => {
     })
     .catch(err => console.log(err))
     .then(data => data.json())
-      .then(data => {setCurrUser(data); console.log(data)});
+      .then(data => setCurrUser(data));
   }, []);
 
  return(
    <div>
     <Router>
-      <Navbar currUser={currUser} setCurrUser={setCurrUser}  />     
+      <Navbar currUser={currUser} setCurrUser={setCurrUser}  />    
       <Switch>
         <Route exact path="/" render={(props) => <ProtectedRoute {...props} currUser={currUser} />} />
         <Route exact path="/login" render={(props) => <LoginRedirect {...props} currUser={currUser} setCurrUser={setCurrUser} />} />
