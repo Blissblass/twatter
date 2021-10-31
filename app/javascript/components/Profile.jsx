@@ -77,6 +77,7 @@ const Profile = (props) => {
         body: JSON.stringify(data)
       });
 
+      addData.followers -= 1;
       setFollowing(false);
     } else {
       fetch('/follows', {
@@ -89,6 +90,7 @@ const Profile = (props) => {
       });
 
       setFollowing(true);
+      addData.followers += 1;
     }
   };
 
