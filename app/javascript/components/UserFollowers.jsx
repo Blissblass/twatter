@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router';
 import UserProfileBox from './UserProfileBox';
 
 const UserFollowers = (props) => {
@@ -27,4 +28,4 @@ const UserFollowers = (props) => {
     )
 }
 
-export default UserFollowers;
+export default withRouter(UserFollowers);
