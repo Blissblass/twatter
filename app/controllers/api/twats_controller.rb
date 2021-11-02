@@ -24,7 +24,7 @@ class Api::TwatsController < ApplicationController
     @twats = []
 
     current_user.follows.each do |f|
-      preload = Twat.all.where(user_id: f.followee_id).or(Twat.all.where(user_id: current_user.id))
+      preload = Twat.all.where(user_id: current_user.id ).or(Twat.all.where(user_id: f.followee_id))
                     .includes(:user).order(created_at: :desc)
 
                     

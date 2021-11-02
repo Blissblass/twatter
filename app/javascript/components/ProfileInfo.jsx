@@ -16,6 +16,7 @@ const ProfileInfo = (props) => {
   const noChange = inputName == profUser.username && !inputFile
   const userId = props.match.params.id;
   const ownProfile = props.currUser.id == userId;
+  const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
   useEffect(() => {
     if(profUser.username) {
@@ -23,10 +24,28 @@ const ProfileInfo = (props) => {
     }
   }, [profUser.username]);
 
+  useEffect(() => {
+    fetch('/api/already_following', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': CSRF
+        },
+        body: JSON.stringify({
+          "follower_id": props.currUser.id,
+          "followee_id": userId
+        })
+      })
+      .then(data => data.json())
+      .then(data => {
+        if(data) {
+          setFollowing(true);
+        };
+      });
+  }, [props.currUser.id]);
+
 
   const handleProfileEdit = () => {
-    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-    
 
     if(inputName != profUser.username) {
       fetch('/api/update_user', {

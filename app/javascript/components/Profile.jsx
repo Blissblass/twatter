@@ -33,25 +33,6 @@ const Profile = (props) => {
 
   }, [userId, props.currUser.username]);
 
-  useEffect(() => {
-    fetch('/api/already_following', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': CSRF
-        },
-        body: JSON.stringify({
-          "follower_id": props.currUser.id,
-          "followee_id": userId
-        })
-      })
-      .then(data => data.json())
-      .then(data => {
-        if(data) {
-          setFollowing(true);
-        };
-      });
-  }, [props.currUser.id]);
 
 
 

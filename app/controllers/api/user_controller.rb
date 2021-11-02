@@ -76,7 +76,7 @@ class Api::UserController < ApplicationController
   def get_follow_recommendations
     @user = User.find(params[:id])
 
-    if @user.followers.empty?
+    if @user.follows.empty?
       recommendations = User.order(Arel.sql('RANDOM()')).limit(3)
       render json: { users: recommendations, msg: 'this is an if situation!' }
     else
