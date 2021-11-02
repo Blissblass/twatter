@@ -31,14 +31,16 @@ const App = props => {
    <div>
     <Router>
       <Navbar currUser={currUser} setCurrUser={setCurrUser}  />    
-      <Switch>
-        <Route exact path="/" render={(props) => <ProtectedRoute {...props} currUser={currUser} />} />
-        <Route exact path="/login" render={(props) => <LoginRedirect {...props} currUser={currUser} setCurrUser={setCurrUser} />} />
-        <Route exact path="/signUp" render={(props) => <SignupRedirect {...props} currUser={currUser} setCurrUser={setCurrUser}/>} />
-        <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} setCurrUser={setCurrUser} currUser={currUser} />} />
-        <Route exact path="/user/:id/follows" render={(props) => <UserFollows {...props} />} />         
-        <Route exact path="/user/:id/followers" render={(props) => <UserFollowers {...props} />} />         
-      </Switch>
+      <div className="container">
+        <Switch>
+          <Route exact path="/" render={(props) => <ProtectedRoute {...props} currUser={currUser} />} />
+          <Route exact path="/login" render={(props) => <LoginRedirect {...props} currUser={currUser} setCurrUser={setCurrUser} />} />
+          <Route exact path="/signUp" render={(props) => <SignupRedirect {...props} currUser={currUser} setCurrUser={setCurrUser}/>} />
+          <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} setCurrUser={setCurrUser} currUser={currUser} />} />
+          <Route exact path="/user/:id/follows" render={(props) => <UserFollows {...props} />} />         
+          <Route exact path="/user/:id/followers" render={(props) => <UserFollowers {...props} />} />         
+        </Switch>
+      </div>
     </Router>
   </div>
  )
