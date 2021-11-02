@@ -78,11 +78,11 @@ class Api::UserController < ApplicationController
 
     if @user.follows.empty?
       recommendations = User.order(Arel.sql('RANDOM()')).limit(3)
-      render json: { users: recommendations, msg: 'this is an if situation!' }
+      render json: recommendations
     else
       users = User.order(Arel.sql('RANDOM()')).limit(3)
       users.map { |user| user.follows.order(Arel.sql('RANDOM()')).limit(1).first }
-      render json: { users: users, msg: 'this is an else situation!' }
+      render json: users
     end
   end
 

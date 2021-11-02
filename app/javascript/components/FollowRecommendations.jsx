@@ -3,11 +3,10 @@ import React, { useEffect, useState } from 'react';
 const FollowRecommendations = (props) => {
 
   // Very W.I.P !!!!!!
-
+  const [users, setUsers] = useState([])
   useEffect(()=> {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-    const [users, setUsers] = useState([])
-    
+
     fetch('/api/follow_recommendations', {
       method: 'POST',
       headers: {
@@ -19,14 +18,14 @@ const FollowRecommendations = (props) => {
       })
     })
     .then(data => data.json())
-    .then(data => setUsers(data));
+    .then(data => {setUsers(data); console.log(data);});
   }, []);
 
   return(
-    <div className="col-md-2">
+    <div className="col-md-2 mt-2">
       <div className="card">
         <h3>Follow these guys:</h3>
-        {users.map(user => (<h1>user.username</h1>))}
+        {users.map(user => <h1 key={user.id}>{user.username}</h1>)}
       </div>
     </div>
   )
