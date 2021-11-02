@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const FollowRecommendations = (props) => {
 
@@ -23,9 +24,9 @@ const FollowRecommendations = (props) => {
 
   return(
     <div className="col-md-2 mt-2 mx-5">
-      <div className="card">
-        <h3>Follow these guys:</h3>
-        {users.map(user => <h1 key={user.id}>{user.username}</h1>)}
+      <div className="card" style={{width:250}}>
+        <h3>Relevant People:</h3>
+        {users.map(user => <Link style={{textDecoration:"none", color:"black"}}to={`/user/${user.id}`} key={user.id}><h3>{user.username}</h3></Link>)}
       </div>
     </div>
   )
