@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     patch '/update_user' => 'user#update_user'
     post '/user_follows' => 'user#get_user_follows'
     post '/user_followers' => 'user#get_user_followers'
+    post '/follow_recommendations' => 'user#get_follow_recommendations'
   end
 
   Rails.application.routes.draw do

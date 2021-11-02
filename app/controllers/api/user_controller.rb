@@ -73,6 +73,19 @@ class Api::UserController < ApplicationController
     render json: @follows
   end
 
+  def get_follow_recommendations
+    @user = User.find(params[:id])
+
+    if @user.followers.empty?
+      recommendations = User.order(Arel.sql('RANDOM()')).limit(3)
+      render json: { users: recommendations, msg: 'this is an if situation!' }
+    else
+      users = User.order(Arel.sql('RANDOM()')).limit(3)
+      users.map { |user| user.follows.order(Arel.sql('RANDOM()')).limit(1).first }
+      render json: { users: users, msg: 'this is an else situation!' }
+    end
+  end
+
   private
 
   def user_params

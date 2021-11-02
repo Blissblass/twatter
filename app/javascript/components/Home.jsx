@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TwatBox from './TwatBox';
 import Feed from './Feed';
+import FollowRecommendations from './FollowRecommendations';
 
 const Home = (props) => {
   const [posts, setPosts] = useState([]);
@@ -23,6 +24,7 @@ const Home = (props) => {
       <div className="row justify-content-center mt-10 mx-0" style={{height:300}}>
         <TwatBox currUser={props.currUser} setPosts={setPosts} />
         <Feed posts={posts} currUser={props.currUser} setPosts={setPosts} />
+        <FollowRecommendations currUser={props.currUser} />
       </div>
     </div>
     
