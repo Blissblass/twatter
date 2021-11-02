@@ -22,7 +22,7 @@ const FollowRecommendations = (props) => {
   }, []);
 
   return(
-    <div className="col-md-2 mt-2">
+    <div className="col-md-2 mt-2 mx-5">
       <div className="card">
         <h3>Follow these guys:</h3>
         {users.map(user => <h1 key={user.id}>{user.username}</h1>)}

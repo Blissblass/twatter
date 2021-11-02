@@ -42,7 +42,7 @@ const TwatBox = props => {
   };
 
   return(
-      <div className="card col-md-6 mx-0 mt-2">
+      <div className="card col-md-6 mt-2 mx-3">
         <h3>Welcome, {props.currUser.username}</h3>
         <form onSubmit={handleSubmit}>
           <textarea value={body} onChange={(e) => setBody(e.currentTarget.value) } className="form-control" style={{resize:"none"}} placeholder="Twat something on your mind..."></textarea>
