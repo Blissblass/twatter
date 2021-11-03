@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import RecommendedUser from './RecommendedUser'
 
 const FollowRecommendations = (props) => {
 
@@ -19,14 +19,14 @@ const FollowRecommendations = (props) => {
       })
     })
     .then(data => data.json())
-    .then(data => {setUsers(data); console.log(data);});
+    .then(data => {setUsers(data.users); console.log(data);});
   }, []);
 
   return(
     <div className="col-md-2 mt-2 mx-5">
       <div className="card" style={{width:250}}>
-        <h3>Relevant People:</h3>
-        {users.map(user => <Link style={{textDecoration:"none", color:"black"}}to={`/user/${user.id}`} key={user.id}><h3>{user.username}</h3></Link>)}
+        <h3>Cool People:</h3>
+        {users.map(user => <RecommendedUser key={user.id} user={user} />)}
       </div>
     </div>
   )

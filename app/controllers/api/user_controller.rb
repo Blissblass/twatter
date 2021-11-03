@@ -78,11 +78,13 @@ class Api::UserController < ApplicationController
 
     if @user.follows.empty?
       recommendations = User.order(Arel.sql('RANDOM()')).limit(3)
-      render json: recommendations
+      images = recommendations.map( |user| url_for(user.image))
+      render json: { users: recommendations, images: images }
     else
       users = User.order(Arel.sql('RANDOM()')).limit(3)
-      users.map { |user| user.follows.order(Arel.sql('RANDOM()')).limit(1).first }
-      render json: users
+        .map { |user| user.follows.order(Arel.sql('RANDOM()')).limit(1).first }
+      images = users.map( |user| url_for(user.image))
+      render json: { users: users, images: images }
     end
   end
 
