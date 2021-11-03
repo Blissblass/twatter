@@ -5,8 +5,8 @@ const RecommendedUser = (props) => {
 
   return(
     <Link to={`/user/${props.user.id}`} style={{textDecoration:"none", color:"black"}} >
-      <h3>{props.user.username}</h3>
       <img className="w-10"/>
+      <h3>{props.user.username}</h3>
     </Link>
   )
 };

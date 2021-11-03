@@ -7,8 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :twats, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :followers, class_name: 'Follow', foreign_key: 'followee_id'
-  has_many :follows, class_name: 'Follow', foreign_key: 'follower_id'
+  has_many :followers, class_name: 'Follow', foreign_key: 'followee_id', dependent: :destroy
+  has_many :follows, class_name: 'Follow', foreign_key: 'follower_id', dependent: :destroy
   has_one_attached :image
 
   def attach_file 

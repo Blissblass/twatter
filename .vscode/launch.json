@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch test",
+      "request": "launch",
+      "mainClass": "test",
+      "projectName": "twatter_3c87d012"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Local Node File",
+      "console": "integratedTerminal",
+      "program": "${file}"
+    },
+    {
+      "name": "Launch index.html",
+      "type": "firefox",
+      "request": "launch",
+      "file": "${workspaceFolder}/index.html"
+    }
+  ]
+}
