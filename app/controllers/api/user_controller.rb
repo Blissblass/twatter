@@ -83,9 +83,9 @@ class Api::UserController < ApplicationController
       render json: { users: recommendations, images: images }
     else
       first_users = User.order(Arel.sql('RANDOM()')).limit(3)
-      recommendations = first_users
-        .map { |user| get_random_user_follow(user) }
-        .filter { |user| user != nil }
+      
+      recommendations = []
+      first_users.each { |user| recommendations << get_random_user_follow(user) if user.follows.present? }
       images = recommendations.map { |user| url_for(user.image) if user != nil }
 
       render json: { users: recommendations, images: images }
@@ -100,7 +100,6 @@ class Api::UserController < ApplicationController
 
   def get_random_user_follow(user)
     follow = user.follows.order(Arel.sql('RANDOM()')).limit(1)[0]
-    return nil if follow.nil?
     follow.followee
   end
 
