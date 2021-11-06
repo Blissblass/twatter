@@ -78,17 +78,19 @@ class Api::UserController < ApplicationController
 
     if @user.follows.empty?
       recommendations = User.order(Arel.sql('RANDOM()')).limit(3)
-      images = recommendations.map { |user| url_for(user.image) }
+      data = recommendations.map { |user| { user: user, image: url_for(user.image) } }
 
-      render json: { users: recommendations, images: images }
+      render json: data
     else
       first_users = User.order(Arel.sql('RANDOM()')).limit(3)
       
       recommendations = []
-      first_users.each { |user| recommendations << get_random_user_follow(user) if user.follows.present? }
-      images = recommendations.map { |user| url_for(user.image) if user != nil }
+      # We make 2 restrictions for the query, the user *must* have at least 1 follower, and the user must *not* be the current user
+      first_users.each { |user| recommendations << get_random_user_follow(user) if user.follows.present? && not_current(user) }
 
-      render json: { users: recommendations, images: images }
+      data = recommendations.map { |user| { user: user, image: url_for(user.image) } if user != nil }
+
+      render json: data
     end
   end
 
@@ -101,6 +103,10 @@ class Api::UserController < ApplicationController
   def get_random_user_follow(user)
     follow = user.follows.order(Arel.sql('RANDOM()')).limit(1)[0]
     follow.followee
+  end
+
+  def not_current(user)
+    user.username == current_user.username
   end
 
 end

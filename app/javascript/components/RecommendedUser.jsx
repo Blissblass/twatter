@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom';
 const RecommendedUser = (props) => {
 
   return(
-    <Link to={`/user/${props.user.id}`} style={{textDecoration:"none", color:"black"}} >
-      <img className="w-10"/>
-      <h3>{props.user.username}</h3>
-    </Link>
+    <div>
+      
+      <Link to={`/user/${props.user.id}`} style={{textDecoration:"none", color:"black"}} >
+        <img src={props.image} style={{width: 50 }}/>
+        <h3>{props.user.username}</h3>
+      </Link>
+    </div>
   )
 };
 
