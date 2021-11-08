@@ -40,7 +40,7 @@ const App = props => {
           <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} setCurrUser={setCurrUser} currUser={currUser} />} />
           <Route exact path="/user/:id/follows" render={(props) => <UserFollows {...props} />} />         
           <Route exact path="/user/:id/followers" render={(props) => <UserFollowers {...props} />} />     
-          <Route exact path="/post/:id" render={(props) => <PostPage {...props} />} />    
+          <Route exact path="/post/:id" render={(props) => <PostPage {...props} currUser={currUser} />} />    
         </Switch>
       </div>
     </Router>

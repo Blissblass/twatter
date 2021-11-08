@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/user/:id', to: 'pages#index'
   get '/user/:id/followers', to: 'pages#index'
   get '/user/:id/follows', to: 'pages#index'
+  get '/post/:id', to: 'pages#index'
   
   namespace :api do 
     get '/current_user' => 'user#get_current_user'
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
     post '/user_follows' => 'user#get_user_follows'
     post '/user_followers' => 'user#get_user_followers'
     post '/follow_recommendations' => 'user#get_follow_recommendations'
+    get '/get_twat/:id' => 'twats#get_twat'
   end
 
   Rails.application.routes.draw do

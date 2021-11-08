@@ -18,7 +18,7 @@ const FollowRecommendations = (props) => {
       })
     })
     .then(data => data.json())
-    .then(data => {setUsersData(data); console.log(data);});
+    .then(data => setUsersData(data));
   }, []);
 
   return(

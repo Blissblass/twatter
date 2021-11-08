@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 const Post = (props) => {
@@ -7,6 +7,7 @@ const Post = (props) => {
   const [postLiked, setLiked] = useState(false);
   const [likeData, setLikeData] = useState(null);
   const [body, setBody] = useState(props.post.body);
+  const history = useHistory();
 
   useEffect(() => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
@@ -94,12 +95,16 @@ const Post = (props) => {
     }
   }
 
+  const handleRedirect = () => {
+    history.push(`/post/${props.post.id}`);
+  };
+
 
   return(
     <div className="card col-md-6 m-4">
       <img src={props.post.image} className="w-25" />
       <h3><Link style={{textDecoration:"none"}} to={`/user/${props.post.user_id}`}>@{props.post.poster}</Link></h3>
-      <h3 style={{display: !statDisplay ? "block" : "none"}}>{props.post.body}</h3>
+      <h3 style={{display: !statDisplay ? "block" : "none", cursor:"pointer"}} onClick={handleRedirect}>{props.post.body}</h3>
       <textarea className="form-control" style={{display: statDisplay ? "block" : "none"}} value={body} onChange={handleChange}></textarea>
       
       <Button className="m-1" onClick={handleLike} style={{display: !statDisplay ? "block" : "none"}}>

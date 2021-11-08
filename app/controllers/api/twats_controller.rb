@@ -44,4 +44,13 @@ class Api::TwatsController < ApplicationController
     end
   end
 
+  def get_twat
+    first_fetch = Twat.includes(:user).find(params[:id])
+    @twat = first_fetch.attributes.merge(
+      'poster' => first_fetch.user.username,
+      'image' => url_for(first_fetch.user.image)
+    )
+    render json: @twat
+  end
+
 end
