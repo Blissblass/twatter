@@ -26,7 +26,7 @@ const FollowRecommendations = (props) => {
     <div className="col-md-2 mt-2 mx-5">
       <div className="card p-1 text-center" style={{width:250}}>
         <h3>Cool People</h3>
-        {usersData.map(data => <RecommendedUser key={data.user.id} user={data.user} image={data.image} />)}
+        {usersData.map(data => <RecommendedUser key={data.user.id} user={data.user} image={data.image} />) }
       </div>
     </div>
   )
