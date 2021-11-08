@@ -19,7 +19,7 @@ const PostPage = (props) => {
       "user_id": props.currUser.id
     }
 
-    if(twatData && props.currUser) {
+    if(twatData.id && props.currUser) {
       fetch(`/api/twat_exists`, {
         method: 'POST',
         headers: {
@@ -39,7 +39,7 @@ const PostPage = (props) => {
         return false;
       });
     }
-  }, [props.currUser.id]);
+  }, [props.currUser.id, twatData.id]);
 
   useEffect(() => {
     fetch(`/api/get_twat/${props.match.params.id}`)
