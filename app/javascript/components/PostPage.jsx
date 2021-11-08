@@ -5,3 +5,5 @@ const PostPage = (props) => {
     <h1>You're on PostPage!</h1>
   )
 };  
+
+export default PostPage;

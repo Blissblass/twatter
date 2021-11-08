@@ -103,8 +103,8 @@ class Api::UserController < ApplicationController
   end
 
   def get_random_user_follow(user)
-    return nil if user.follows.empty? || user.id == current_user.id
     follow = user.follows.where.not(followee_id: current_user.id).order(Arel.sql('RANDOM()')).limit(1)[0]
+    return nil if follow.nil? || user.id == current_user.id
     follow.followee
   end
 
