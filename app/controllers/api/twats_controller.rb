@@ -55,7 +55,7 @@ class Api::TwatsController < ApplicationController
 
   def get_twat_comments
     @twat = Twat.find(params[:id])
-    @comments = Twat.comments
+    @comments = @twat.comments
   end
 
 end

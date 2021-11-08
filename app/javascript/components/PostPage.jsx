@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useHistory, withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import CommentBox from './CommentBox';
+import Comments from "./Comments";
 
 const PostPage = (props) => {
 
@@ -150,6 +152,8 @@ const PostPage = (props) => {
         }
         
     </div>
+    <CommentBox post_id={props.match.params.id} />
+    <Comments post_id={props.match.params.id} />
   </div>
   )
 };  

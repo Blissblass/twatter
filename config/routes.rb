@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :twats
   resources :likes, only: [:index, :new, :create, :destroy]
-  resources :follows, only: [:index ,:new, :create, :destroy]
+  resources :follows, only: [:index, :new, :create, :destroy]
+  resources :comments, only: [:index, :new, :create, :update, :edit, :destroy]
   root 'pages#index'
   get '/login', to: 'pages#index'
   get '/signUp', to: 'pages#index'
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
     post '/user_followers' => 'user#get_user_followers'
     post '/follow_recommendations' => 'user#get_follow_recommendations'
     get '/get_twat/:id' => 'twats#get_twat'
+    get '/get_comments/:id' => 'twats#get_twat_comments'
   end
 
   Rails.application.routes.draw do
