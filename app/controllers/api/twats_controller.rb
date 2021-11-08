@@ -53,4 +53,9 @@ class Api::TwatsController < ApplicationController
     render json: @twat
   end
 
+  def get_twat_comments
+    @twat = Twat.find(params[:id])
+    @comments = Twat.comments
+  end
+
 end

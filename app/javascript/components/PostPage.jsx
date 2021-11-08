@@ -9,7 +9,7 @@ const PostPage = (props) => {
   const [statDisplay, setDisplay] = useState(false);
   const [postLiked, setLiked] = useState(false);
   const [likeData, setLikeData] = useState(null);
-  const [body, setBody] = useState(twatData.body);
+  const [body, setBody] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const PostPage = (props) => {
   useEffect(() => {
     fetch(`/api/get_twat/${props.match.params.id}`)
       .then(data => data.json())
-      .then(data => setTwatData(data))
+      .then(data => {setTwatData(data); setBody(data.body)})
   }, []);
   
 
@@ -103,6 +103,19 @@ const PostPage = (props) => {
     }
   }
 
+  const handleDelete = (postId) => {
+    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+    fetch(`/twats/${postId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': CSRF
+      }
+    });
+
+    history.push('/')
+  };
+
   const handleRedirect = () => {
     history.push(`/post/${props.post.id}`);
   };
@@ -130,7 +143,7 @@ const PostPage = (props) => {
         
         {
         props.currUser.id == twatData.user_id ? 
-          <Button className="m-1" onClick={() => props.handleDelete(twatData.id)} 
+          <Button className="m-1" onClick={() => handleDelete(twatData.id)} 
                   style={{display: !statDisplay ? "block" : "none"}}>Delete</Button> 
         : 
           null
