@@ -14,7 +14,7 @@ const Comments = (props) => {
   return(
     <div>
       {comments.length != 0 ? 
-        comments.map(comment => <Comment key={comment.id} body={comment.body} />) 
+        comments.map(comment => <Comment key={comment.id} comment={comment} />) 
       : 
       <div className="row justify-content-center mx-0">
         <div className="card col-md-6  mt-3">
