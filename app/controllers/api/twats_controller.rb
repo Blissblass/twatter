@@ -55,7 +55,14 @@ class Api::TwatsController < ApplicationController
 
   def get_twat_comments
     @twat = Twat.find(params[:id])
-    @comments = @twat.comments
+    comment_fetch = @twat.comments
+    @comments = comment_fetch.map do |comment|
+      comment.attributes.merge(
+        'image' => url_for(comment.user.image),
+        'poster' => comment.user.username
+      )
+    end
+    render json: @comments
   end
 
 end

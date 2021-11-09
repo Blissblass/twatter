@@ -124,7 +124,7 @@ const PostPage = (props) => {
 
   return(
     <div className="row justify-content-center mx-0">
-      <div className="card col-md-6 m-4">
+      <div className="card col-md-6 m-3">
         <img src={twatData.image} className="w-25" />
         <h3><Link style={{textDecoration:"none"}} to={`/user/${twatData.user_id}`}>@{twatData.poster}</Link></h3>
         <h3 style={{display: !statDisplay ? "block" : "none", cursor:"pointer"}} onClick={handleRedirect}>{twatData.body}</h3>
@@ -152,7 +152,7 @@ const PostPage = (props) => {
         }
         
     </div>
-    <CommentBox post_id={props.match.params.id} />
+    <CommentBox currUser={props.currUser} post_id={props.match.params.id} />
     <Comments post_id={props.match.params.id} />
   </div>
   )

@@ -12,7 +12,14 @@ const Comments = (props) => {
 
   return(
     <div>
-      {comments.map(comment => <Comment body={comment.body} />) }
+      {comments.length != 0 ? 
+        comments.map(comment => <Comment body={comment.body} />) 
+      : 
+      <div className="row justify-content-center mx-0">
+        <div className="card col-md-6  mt-3">
+          <h3 className="p-5 text-center">No comments found!</h3>
+        </div>
+      </div>}
     </div>
   )
 };

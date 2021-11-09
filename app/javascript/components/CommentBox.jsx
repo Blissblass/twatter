@@ -12,7 +12,7 @@ const CommentBox = (props) => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const data ={
       comment: {
-        "user_id": current_user.id,
+        "user_id": props.currUser.id,
         "post_id": props.post_id,
         "body": body
       }
@@ -33,7 +33,7 @@ const CommentBox = (props) => {
       <form onSubmit={handleSubmit}>
         <textarea value={body} onChange={(e) => setBody(e.currentTarget.value) } className="form-control" style={{resize:"none"}} placeholder="Make a comment"></textarea>
         <p>{body.length}/250</p>
-        <Button type="submit" disabled={body.length > 250 || body.length == 0} className="m-1">Twat</Button>
+        <Button type="submit" disabled={body.length > 250 || body.length == 0} className="m-1">Make a comment!</Button>
       </form>
     </div>
   );
