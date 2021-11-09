@@ -15,6 +15,8 @@ const Comment = (props) => {
         'X-CSRF-Token': CSRF
       },
     })
+
+    props.setComments(oldComm => oldComm.filter(comment => comment.id != props.comment.id));
   };
 
   return(

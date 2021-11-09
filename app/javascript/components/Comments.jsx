@@ -3,18 +3,10 @@ import Comment from './Comment';
 
 const Comments = (props) => {
 
-  const [comments, setComments] = useState([]);
-
-  useEffect(() => {
-    fetch(`/api/get_comments/${props.post_id}`)
-      .then(data => data.json())
-      .then(data => setComments(data))
-  }, []);
-
   return(
     <div>
-      {comments.length != 0 ? 
-        comments.map(comment => <Comment key={comment.id} comment={comment} />) 
+      {props.comments.length != 0 ? 
+        props.comments.map(comment => <Comment key={comment.id} comment={comment} setComments={setComments} />) 
       : 
       <div className="row justify-content-center mx-0">
         <div className="card col-md-6  mt-3">

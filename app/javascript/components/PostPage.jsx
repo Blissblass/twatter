@@ -12,6 +12,8 @@ const PostPage = (props) => {
   const [postLiked, setLiked] = useState(false);
   const [likeData, setLikeData] = useState(null);
   const [body, setBody] = useState("");
+  const [comments, setComments] = useState([]);
+
   const history = useHistory();
 
   useEffect(() => {
@@ -47,6 +49,10 @@ const PostPage = (props) => {
     fetch(`/api/get_twat/${props.match.params.id}`)
       .then(data => data.json())
       .then(data => {setTwatData(data); setBody(data.body)})
+    
+    fetch(`/api/get_comments/${props.post_id}`)
+      .then(data => data.json())
+      .then(data => setComments(data))
   }, []);
   
 
@@ -152,8 +158,8 @@ const PostPage = (props) => {
         }
         
     </div>
-    <CommentBox currUser={props.currUser} post_id={props.match.params.id} />
-    <Comments post_id={props.match.params.id} />
+    <CommentBox currUser={props.currUser} post_id={props.match.params.id} setComments={setComments} />
+    <Comments comments={comments} post_id={props.match.params.id} />
   </div>
   )
 };  
