@@ -46,11 +46,13 @@ const PostPage = (props) => {
   }, [props.currUser.id, twatData.id]);
 
   useEffect(() => {
-    fetch(`/api/get_twat/${props.match.params.id}`)
+    const twatId = props.match.params.id;
+
+    fetch(`/api/get_twat/${twatId}`)
       .then(data => data.json())
       .then(data => {setTwatData(data); setBody(data.body)})
     
-    fetch(`/api/get_comments/${props.post_id}`)
+    fetch(`/api/get_comments/${twatId}`)
       .then(data => data.json())
       .then(data => setComments(data))
   }, []);
@@ -158,8 +160,8 @@ const PostPage = (props) => {
         }
         
     </div>
-    <CommentBox currUser={props.currUser} post_id={props.match.params.id} setComments={setComments} />
-    <Comments comments={comments} post_id={props.match.params.id} />
+    <CommentBox currUser={props.currUser} setComments={setComments} postId={props.match.params.id} />
+    <Comments comments={comments} setComments={setComments} />
   </div>
   )
 };  

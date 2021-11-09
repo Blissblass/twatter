@@ -13,7 +13,7 @@ const CommentBox = (props) => {
     const data ={
       comment: {
         "user_id": props.currUser.id,
-        "post_id": props.post_id,
+        "post_id": props.postId,
         "body": body
       }
     }
@@ -25,7 +25,9 @@ const CommentBox = (props) => {
         'X-CSRF-Token': CSRF
       },
       body: JSON.stringify(data)
-    });
+    })
+      .then(data => data.json())
+      .then(data => props.setComments(oldComm => [data, ...oldComm]));
   };
 
   return(
