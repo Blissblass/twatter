@@ -55,7 +55,7 @@ class Api::TwatsController < ApplicationController
 
   def get_twat_comments
     @twat = Twat.find(params[:id])
-    comment_fetch = @twat.comments
+    comment_fetch = @twat.comments.order(created_at: :desc)
     @comments = comment_fetch.map do |comment|
       comment.attributes.merge(
         'image' => url_for(comment.user.image),

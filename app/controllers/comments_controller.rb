@@ -6,7 +6,12 @@ class CommentsController < ApplicationController
 
   def create 
     @comment = Comment.new(comment_params)
+
     if @comment.save 
+      @comment = @comment.attributes.merge(
+        'poster' => @comment.user.username,
+        'image' => url_for(@comment.user.image)
+      )
       render json: @comment 
     else
       render json: { msg: 'Something went wrong!', type: 'err' }
