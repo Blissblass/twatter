@@ -6,8 +6,14 @@ const Comment = (props) => {
 
 
   const handleDelete = () => {
+    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+
     fetch(`/comments/${props.comment.id}`, {
-      method: 'DELETE'
+      method: 'DELETE',      
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': CSRF
+      },
     })
   };
 
