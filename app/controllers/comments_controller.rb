@@ -23,6 +23,7 @@ class CommentsController < ApplicationController
       render json: @comment 
     else
       render json: { msg: 'Something went wrong!', type: 'err' }
+    end
   end
 
   def destroy
@@ -33,7 +34,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:post).permit(:post_id, :user_id, :body)
+    params.require(:comment).permit(:post_id, :user_id, :body)
   end
 
 end
