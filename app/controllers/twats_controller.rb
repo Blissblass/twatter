@@ -17,6 +17,10 @@ class TwatsController < ApplicationController
   def create 
     @twat = Twat.new(twat_parameters)
     if @twat.save
+      @twat = @twat.attributes.merge(
+        'poster' => @twat.user.username,
+        'image' => url_for(@twat.user.image)
+      )
       render json: @twat
     else
       render json: @twat.errors.full_messages, status: 400
