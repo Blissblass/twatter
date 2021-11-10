@@ -49,11 +49,22 @@ const TwatBox = props => {
     console.log(mediaURL);
   };
 
+  const handleMediaDelete = () => {
+    setPostMedia(undefined);
+    setMediaURL("");
+  };
+
   return(
       <div className="card col-md-6 mt-2 mx-3">
         <h3>Welcome, {props.currUser.username}</h3>
-        { mediaURL ? <img src={mediaURL} style={{width:250}} className="mb-2" alt="Optional media for twat."/> : null }
+        
+        { mediaURL ?
+        <div>
+            <button type="button" className="btn-close m-2" style={{position:"relative", top:-97}} onClick={handleMediaDelete} />
+            <img src={mediaURL} style={{width:250, borderRadius:5}} className="mb-2" alt="Optional media for twat."/> 
+        </div> : null }
         <form onSubmit={handleSubmit}>
+          
           <textarea value={body} onChange={(e) => setBody(e.currentTarget.value) } className="form-control" style={{resize:"none"}} placeholder="Twat something on your mind..."></textarea>
           <p>{body.length}/250</p>
           <div className="d-flex justify-content-between">
