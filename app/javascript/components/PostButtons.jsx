@@ -40,20 +40,6 @@ const PostButtons = (props) => {
     }
   }, [props.currUser.id]);
 
-  
-  const handleDelete = (postId) => {
-    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-    fetch(`/twats/${postId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': CSRF
-      }
-    });
-
-    props.setPosts(oldPosts => oldPosts.filter(post => post.id != postId));
-  };
-
   const handleLike = (e) => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const data = {
@@ -141,7 +127,7 @@ const PostButtons = (props) => {
       
       {
       props.currUser.id == props.post.user_id ? 
-        <FaRegTrashAlt className="m-1" onClick={() => handleDelete(props.post.id)} 
+        <FaRegTrashAlt className="m-1" onClick={() => props.handleDelete(props.post.id)} 
           style={{display: !props.statDisplay ? "block" : "none", cursor: "pointer", fontSize: 40}} /> 
       : 
         null
