@@ -34,6 +34,7 @@ class Api::TwatsController < ApplicationController
             'poster' => twat.user.username,
             'image' =>  url_for(twat.user.image),
             'media' => url_for(twat.media)
+            'type' => twat.media
           )
         else
           twat.attributes.merge(

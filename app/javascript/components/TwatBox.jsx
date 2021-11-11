@@ -47,6 +47,8 @@ const TwatBox = props => {
 
       setPostMedia(media);
       setMediaURL(mediaURL);
+      console.log(media);
+      console.log(mediaURL);
     }
   };
 
@@ -60,10 +62,23 @@ const TwatBox = props => {
         <h3>Welcome, {props.currUser.username}</h3>
         
         { mediaURL ?
-        <div>
-            <button type="button" className="btn-close m-2" style={{position:"relative", top:-97}} onClick={handleMediaDelete} />
-            <img src={mediaURL} style={{width:250, borderRadius:5}} className="mb-2" alt="Optional media for twat."/> 
-        </div> : null }
+          <div>
+              <button type="button" className="btn-close m-2" style={{position:"relative", top:-97}} onClick={handleMediaDelete} />
+              {postMedia.type == "video/mp4" ? 
+                <div class="embed-responsive embed-responsive-4by3">
+                  <video style={{width: 500, borderRadius: 5, marginTop: 0}} controls="true" class="embed-responsive-item">
+                    <source src={mediaURL} type="video/mp4" />
+                  </video>
+                </div>
+              : 
+                <img src={mediaURL} style={{width:250, borderRadius:5}} className="mb-2" alt="Optional media for twat."/>
+              }
+              
+          </div> 
+        : 
+          null 
+        }
+
         <form onSubmit={handleSubmit}>
           
           <textarea value={body} onChange={(e) => setBody(e.currentTarget.value) } className="form-control" style={{resize:"none"}} placeholder="Twat something on your mind..."></textarea>
