@@ -109,7 +109,7 @@ const Post = (props) => {
 
           props.post.media_type == "video/mp4" ? 
           <div className="embed-responsive embed-responsive-4by3">
-            <video style={{width: 400, borderRadius: 5, marginTop: 0}} controls={true} className="embed-responsive-item">
+            <video style={{width: 400, borderRadius: 5, marginTop: 5}} controls={true} className="embed-responsive-item">
               <source src={props.post.media} type="video/mp4" />
             </video>
           </div>

@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 const TwatBox = props => {
 
   const [body, setBody] = useState("");
-  const [postMedia, setPostMedia] = useState();
+  const [postMedia, setPostMedia] = useState(null);
   const [mediaURL, setMediaURL] = useState("");
 
   useEffect(() => {
@@ -20,7 +20,9 @@ const TwatBox = props => {
     const formData = new FormData();
     formData.append("twat[body]", target.value);
     formData.append("twat[user_id]", props.currUser.id);
-    formData.append("twat[media]", postMedia);
+    if(postMedia) {
+      formData.append("twat[media]", postMedia);
+    }
 
     fetch('/twats', {
       method: 'POST',
