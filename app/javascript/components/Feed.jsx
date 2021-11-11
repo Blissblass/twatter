@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Post from "./Post";
 
 const Feed = props => {
-
   return(
     <div className="row justify-content-center mx-0" >
        
@@ -10,7 +9,7 @@ const Feed = props => {
         props.posts ? 
         
         props.posts.map(post=> (
-          <Post key={post.id} post={post} handleDelete={handleDelete} currUser={props.currUser}/>
+          <Post key={post.id} post={post} currUser={props.currUser}/>
           )
         ) 
         
