@@ -14,17 +14,18 @@ class Api::UserController < ApplicationController
   def get_user_profile
     @user = User.includes(:twats).find_by(id: params[:id])
     @twats = @user.twats.order(created_at: :desc).map do |twat|
-      if twat.media.attached?
-        twat.attributes.merge(
-          'poster' => twat.user.username,
-          'media' => url_for(twat.media),
-          'media_type' => twat.media.content_type
-        )
-      else
-        twat.attributes.merge(
-          'poster' => twat.user.username,
+        if twat.media.attached?
+          twat.attributes.merge(
+            'poster' => twat.user.username,
+            'media' => url_for(twat.media),
+            'media_type' => twat.media.content_type
+          )
+        else
+          twat.attributes.merge(
+            'poster' => twat.user.username,
+          )
+        end
       end
-    end
 
     if @user
       render json: { user: @user, twats: @twats, additionalData: { image: url_for(@user.image), followers: @user.followers.count, follows: @user.follows.count } }
