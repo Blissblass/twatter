@@ -27,7 +27,7 @@ const CommentBox = (props) => {
       body: JSON.stringify(data)
     })
       .then(data => data.json())
-      .then(data => {props.setComments(oldComm => [data, ...oldComm]); console.log(data)});
+      .then(data => {props.setComments(oldComm => [data, ...oldComm])});
     setBody("");  
   };
 
