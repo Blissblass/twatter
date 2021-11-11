@@ -28,7 +28,7 @@ const NavbarForm = (props) => {
         body: JSON.stringify(data)
       })
         .then(data => data.json())
-        .then(data => {setUsers(data); console.log(data)})
+        .then(data => {setUsers(data)})
     }
   };
 
