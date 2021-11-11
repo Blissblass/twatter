@@ -8,30 +8,9 @@ const Post = (props) => {
   const [statDisplay, setDisplay] = useState(false);
   const [body, setBody] = useState(props.post.body);
   const history = useHistory();
-  
-  const handleDisplay = () => {
-    setDisplay(oldState => !oldState);
-  };
 
   const handleChange = (e) => {
     setBody(e.target.value);
-  };
-
-  const handleConfirm = (e) => {
-    const newPost = props.post;
-    newPost.body = body;
-
-    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-    fetch(`/twats/${newPost.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': CSRF
-      },
-      body: JSON.stringify(newPost)
-    });
-    
-    setDisplay(oldDisplay => !oldDisplay);
   };
 
   const handleRedirect = () => {
@@ -65,24 +44,7 @@ const Post = (props) => {
       <h3 style={{display: !statDisplay ? "block" : "none", cursor:"pointer"}} onClick={handleRedirect}>{props.post.body}</h3>
       <textarea className="form-control" style={{display: statDisplay ? "block" : "none"}} value={body} onChange={handleChange}></textarea>
       
-      <PostButtons post={props.post} currUser={props.currUser} />
-      
-      {
-      props.currUser.id == props.post.user_id ? 
-        <Button className="m-1" onClick={handleDisplay}>Edit</Button> 
-      : 
-        null
-      }
-
-      <Button className="m-1" onClick={handleConfirm} style={{display: statDisplay ? "block" : "none"}}>Confirm</Button>
-      
-      {
-      props.currUser.id == props.post.user_id ? 
-        <Button className="m-1" onClick={() => props.handleDelete(props.post.id)} 
-                style={{display: !statDisplay ? "block" : "none"}}>Delete</Button> 
-      : 
-        null
-      }
+      <PostButtons post={props.post} currUser={props.currUser} statDisplay={statDisplay} />
       
   </div>
   )
