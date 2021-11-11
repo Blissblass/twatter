@@ -44,7 +44,7 @@ const Post = (props) => {
       <h3 style={{display: !statDisplay ? "block" : "none", cursor:"pointer"}} onClick={handleRedirect}>{props.post.body}</h3>
       <textarea className="form-control" style={{display: statDisplay ? "block" : "none"}} value={body} onChange={handleChange}></textarea>
       
-      <PostButtons post={props.post} currUser={props.currUser} statDisplay={statDisplay} />
+      <PostButtons post={props.post} currUser={props.currUser} statDisplay={statDisplay} setDisplay={setDisplay} body={body} />
       
   </div>
   )

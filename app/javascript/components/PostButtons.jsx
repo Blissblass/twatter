@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
-import { ImPencil2 } from "react-icons/im";
 import { AiOutlineCheck } from "react-icons/ai";
+import { ImPencil2 } from "react-icons/im";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const PostButtons = (props) => {
 
@@ -69,7 +70,7 @@ const PostButtons = (props) => {
 
   const handleConfirm = (e) => {
     const newPost = props.post;
-    newPost.body = body;
+    newPost.body = props.body;
 
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     fetch(`/twats/${newPost.id}`, {
@@ -81,11 +82,11 @@ const PostButtons = (props) => {
       body: JSON.stringify(newPost)
     });
     
-    setDisplay(oldDisplay => !oldDisplay);
+    props. setDisplay(oldDisplay => !oldDisplay);
   };
 
   const handleDisplay = () => {
-    setDisplay(oldState => !oldState);
+    props.setDisplay(oldState => !oldState);
   };
 
   return(
@@ -97,7 +98,7 @@ const PostButtons = (props) => {
           <h4>33</h4> 
         </div>
       : 
-        <div>
+        <div style={{display:"flex", alignItems:"center"}}>
           <AiOutlineHeart style={{cursor: "pointer", fontSize: 50}} onClick={handleLike} />
           <h5>33</h5> 
         </div>
@@ -106,17 +107,18 @@ const PostButtons = (props) => {
             
       {
       props.currUser.id == props.post.user_id ? 
-        <ImPencil2 className="m-1" onClick={props.handleDisplay} />
+        <ImPencil2 className="m-1" style={{cursor: "pointer", fontSize: 35}} onClick={handleDisplay} />
       : 
         null
       }
 
-      <Button className="m-1" onClick={handleConfirm} style={{display: props.statDisplay ? "block" : "none"}}>Confirm</Button>
+      <AiOutlineCheck className="m-1" onClick={handleConfirm} 
+        style={{display: props.statDisplay ? "block" : "none", cursor: "pointer", fontSize: 50}} />
       
       {
       props.currUser.id == props.post.user_id ? 
-        <Button className="m-1" onClick={() => props.handleDelete(props.post.id)} 
-                style={{display: !props.statDisplay ? "block" : "none"}}>Delete</Button> 
+        <FaRegTrashAlt className="m-1" onClick={() => handleDelete(props.post.id)} 
+          style={{display: !props.statDisplay ? "block" : "none", cursor: "pointer", fontSize: 40}} /> 
       : 
         null
       }
