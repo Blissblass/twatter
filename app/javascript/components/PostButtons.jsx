@@ -4,6 +4,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { AiOutlineCheck } from "react-icons/ai";
 import { ImPencil2 } from "react-icons/im";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { IoChatbubbleOutline } from "react-icons/io5";
 
 const PostButtons = (props) => {
 
@@ -93,24 +94,33 @@ const PostButtons = (props) => {
     <div style={{display:"flex", alignItems:"center"}}>
 
       {postLiked ? 
-        <div style={{display:"flex", alignItems:"center"}}>
+        <div style={{display:"flex", alignItems:"center", marginRight: 27}}>
           <AiFillHeart style={{cursor: "pointer", fontSize: 50}} onClick={handleLike} /> 
           <h4>33</h4> 
         </div>
       : 
-        <div style={{display:"flex", alignItems:"center"}}>
+        <div style={{display:"flex", alignItems:"center", marginRight: 27}}>
           <AiOutlineHeart style={{cursor: "pointer", fontSize: 50}} onClick={handleLike} />
-          <h5>33</h5> 
+          <h4>33</h4> 
         </div>
 
       }
+
+      <div style={{display:"flex", alignItems:"center", marginRight: 27}}>
+        <IoChatbubbleOutline style={{cursor: "pointer", fontSize: 45}} />
+        <h4>43</h4>
+      </div>
+
             
       {
       props.currUser.id == props.post.user_id ? 
+      <div style={{marginRight: 27}}>
         <ImPencil2 className="m-1" style={{cursor: "pointer", fontSize: 35}} onClick={handleDisplay} />
+      </div>  
       : 
         null
       }
+
 
       <AiOutlineCheck className="m-1" onClick={handleConfirm} 
         style={{display: props.statDisplay ? "block" : "none", cursor: "pointer", fontSize: 50}} />

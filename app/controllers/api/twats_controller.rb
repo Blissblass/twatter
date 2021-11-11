@@ -74,4 +74,7 @@ class Api::TwatsController < ApplicationController
     render json: @comments
   end
 
+  def get_twat_stats
+  end
+
 end
