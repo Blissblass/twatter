@@ -103,7 +103,7 @@ const Post = (props) => {
   return(
     <div className="card col-md-6 m-4">
       <div style={{position: "relative"}} className="d-flex justify-content-between">
-        <img style={{alignSelf: "end"}} src={props.post.image} className="w-25" />
+        <img style={{alignSelf: "end", borderRadius: 5}} src={props.post.image} className="w-25" />
 
         {props.post.media ?
 
@@ -114,7 +114,7 @@ const Post = (props) => {
             </video>
           </div>
           : 
-            <img style={{width:350}} src={props.post.media} /> 
+            <img style={{width:350, borderRadius: 5}} src={props.post.media} /> 
 
         : 
 

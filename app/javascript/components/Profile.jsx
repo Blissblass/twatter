@@ -38,7 +38,7 @@ const Profile = (props) => {
 
   return(
     <div className="row justify-content-center mx-0 mt-3">
-      <ProfileInfo currUser={props.currUser} setCurrUser={props.setCurrUser} addData={addData} profUser={profUser} />
+      <ProfileInfo currUser={props.currUser} setCurrUser={props.setCurrUser} addData={addData} setAddData={setAddData} profUser={profUser} />
       
       <Feed posts={profPosts} currUser={props.currUser} />
     </div>

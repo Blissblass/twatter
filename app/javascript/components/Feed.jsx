@@ -3,11 +3,6 @@ import Post from "./Post";
 
 const Feed = props => {
 
-  useEffect(() => {
-    
-  }, [props.posts]);
-  
-
   const handleDelete = (postId) => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     fetch(`/twats/${postId}`, {

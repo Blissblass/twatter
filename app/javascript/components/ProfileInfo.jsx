@@ -71,6 +71,10 @@ const ProfileInfo = (props) => {
         },
         body: formData
       });
+      const newImage = URL.createObjectURL(inputFile);
+      const newUserObj = addData;
+      addData.image = newImage; 
+      props.setAddData(newUserObj);
     }
 
     setEditing(false);
@@ -126,7 +130,7 @@ const ProfileInfo = (props) => {
         <div className="row"> 
           
           <div className="col-md-8 col-sm-8">
-            <img src={addData.image} alt="User's profile image" className="rounded w-25" style={{}} />
+            <img src={addData.image} alt="User's profile image" className="rounded w-25" />
             <input 
             style={{display: isEditing ? "block" : "none"}} 
             type="file" 
