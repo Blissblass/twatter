@@ -29,10 +29,18 @@ class Api::TwatsController < ApplicationController
 
                     
       user_twats = preload.map do |twat|
-        twat.attributes.merge(
-          'poster' => twat.user.username,
-          'image' =>  url_for(twat.user.image)
-        )
+        if twat.media.attached?
+          twat.attributes.merge(
+            'poster' => twat.user.username,
+            'image' =>  url_for(twat.user.image),
+            'media' => url_for(twat.media)
+          )
+        else
+          twat.attributes.merge(
+            'poster' => twat.user.username,
+            'image' =>  url_for(twat.user.image)
+          )
+        end
       end
       @twats << user_twats
     end

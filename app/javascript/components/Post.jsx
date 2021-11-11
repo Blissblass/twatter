@@ -102,7 +102,10 @@ const Post = (props) => {
 
   return(
     <div className="card col-md-6 m-4">
-      <img src={props.post.image} className="w-25" />
+      <div className="d-flex justify-content-between">
+        <img style={{alignSelf: "end"}} src={props.post.image} className="w-25" />
+        {props.post.media ? <img style={{width:350, position: "relative"}} src={props.post.media} /> : null} 
+      </div>
       <h3><Link style={{textDecoration:"none"}} to={`/user/${props.post.user_id}`}>@{props.post.poster}</Link></h3>
       <h3 style={{display: !statDisplay ? "block" : "none", cursor:"pointer"}} onClick={handleRedirect}>{props.post.body}</h3>
       <textarea className="form-control" style={{display: statDisplay ? "block" : "none"}} value={body} onChange={handleChange}></textarea>

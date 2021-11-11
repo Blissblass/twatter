@@ -16,15 +16,18 @@ class TwatsController < ApplicationController
 
   def create 
     @twat = Twat.new(twat_parameters)
+
     if @twat.save
       @twat = @twat.attributes.merge(
         'poster' => @twat.user.username,
-        'image' => url_for(@twat.user.image)
+        'image' => url_for(@twat.user.image),
+        'media' => url_for(@twat.media),
       )
       render json: @twat
     else
       render json: @twat.errors.full_messages, status: 400
     end
+
   end
 
   def edit 
@@ -49,6 +52,6 @@ class TwatsController < ApplicationController
   private 
 
   def twat_parameters
-    params.require(:twat).permit(:id, :body, :user_id, :created_at, :updated_at)
+    params.require(:twat).permit(:id, :body, :user_id, :media, :created_at, :updated_at)
   end
 end

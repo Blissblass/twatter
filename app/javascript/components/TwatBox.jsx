@@ -13,40 +13,41 @@ const TwatBox = props => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setBody("");
 
     const target = e.currentTarget[0];
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-    const data = {
-      twat: {
-        body: target.value,
-        user_id: props.currUser.id,
-      } 
-    };
     
+    const formData = new FormData();
+    formData.append("twat[body]", target.value);
+    formData.append("twat[user_id]", props.currUser.id);
+    formData.append("twat[media]", postMedia);
+
     fetch('/twats', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Accept': 'application/json',
         'X-CSRF-Token': CSRF
       },
-      body: JSON.stringify(data)
+      body: formData
     })
       .catch(err => console.log(err))
       .then(data => data.json())
       .then(data => {
-        props.setPosts(oldPosts => [data, ...oldPosts])
+        props.setPosts(oldPosts => [data, ...oldPosts]);
+        console.log(data);
       })
+    setBody("");  
+    setMediaURL("");
   };
 
   const handleMedia = (e) => {
     const media = e.currentTarget.files[0];
-    const mediaURL = URL.createObjectURL(media);
+    if(media) {
+      const mediaURL = URL.createObjectURL(media);
 
-    setPostMedia(media);
-    setMediaURL(mediaURL);
-    console.log(media);
-    console.log(mediaURL);
+      setPostMedia(media);
+      setMediaURL(mediaURL);
+    }
   };
 
   const handleMediaDelete = () => {

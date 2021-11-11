@@ -16,7 +16,7 @@ const Home = (props) => {
       }
     })
     .then(data => data.json())
-      .then(data => setPosts(data[0]));
+      .then(data => {setPosts(data[0]);  console.log(data);});
   }, [])
 
   return(
