@@ -36,7 +36,6 @@ const TwatBox = props => {
       .then(data => data.json())
       .then(data => {
         props.setPosts(oldPosts => [data, ...oldPosts]);
-        console.log(data);
       })
     setBody("");  
     setMediaURL("");
