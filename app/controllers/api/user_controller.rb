@@ -17,12 +17,14 @@ class Api::UserController < ApplicationController
         if twat.media.attached?
           twat.attributes.merge(
             'poster' => twat.user.username,
+            'image' => url_for(twat.user.image),
             'media' => url_for(twat.media),
             'media_type' => twat.media.content_type
           )
         else
           twat.attributes.merge(
             'poster' => twat.user.username,
+            'image' => url_for(twat.user.image),
           )
         end
       end
