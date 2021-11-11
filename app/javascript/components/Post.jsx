@@ -104,7 +104,22 @@ const Post = (props) => {
     <div className="card col-md-6 m-4">
       <div style={{position: "relative"}} className="d-flex justify-content-between">
         <img style={{alignSelf: "end"}} src={props.post.image} className="w-25" />
-        {props.post.media ? <img style={{width:350}} src={props.post.media} /> : null} 
+
+        {props.post.media ?
+
+          props.post.media_type == "video/mp4" ? 
+          <div className="embed-responsive embed-responsive-4by3">
+            <video style={{width: 400, borderRadius: 5, marginTop: 0}} controls={true} className="embed-responsive-item">
+              <source src={props.post.media} type="video/mp4" />
+            </video>
+          </div>
+          : 
+            <img style={{width:350}} src={props.post.media} /> 
+
+        : 
+
+          null
+        } 
       </div>
       <h3><Link style={{textDecoration:"none"}} to={`/user/${props.post.user_id}`}>@{props.post.poster}</Link></h3>
       <h3 style={{display: !statDisplay ? "block" : "none", cursor:"pointer"}} onClick={handleRedirect}>{props.post.body}</h3>
