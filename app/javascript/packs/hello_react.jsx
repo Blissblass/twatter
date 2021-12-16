@@ -25,7 +25,6 @@ const App = props => {
         'Content-Type': 'application/json'
       }
     })
-    .catch(err => console.log(err))
     .then(data => data.json())
       .then(data => setCurrUser(data));
   }, []);

@@ -1,6 +1,9 @@
 import React from "react";
+import ErrorContext from "./Contexts/ErrorContext";
+import { useContext } from "react";
 
 const SignUp = (props) => {
+  const { setErrors } = useContext(ErrorContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,12 +20,21 @@ const SignUp = (props) => {
 
     await fetch('/users', {
       method: 'POST',
-      headers: {
+      headers: new Headers({
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
         'X-CSRF-Token': CSRF
-      },
+      }),
       body: JSON.stringify(userData)
     })
+      .then(data => data.json())
+      .then(data => {
+        if(data.errors) {
+          for(let error in data.errors) {
+            setErrors(old => [...old, `${error} ${data.errors[error]}`]);
+          } 
+        }
+      });
 
     await fetch('http://127.0.0.1:3000/api/current_user', {
       method: 'GET',
@@ -34,8 +46,8 @@ const SignUp = (props) => {
     })
     .then(data => data.json())
       .then(data => {
-        props.setCurrUser(data)})
-    .catch(err => console.log(`Err: ${err}`))
+        props.setCurrUser(data)
+      })
   }
 
   
