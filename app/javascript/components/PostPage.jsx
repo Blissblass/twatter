@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, withRouter } from "react-router";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import CommentBox from './CommentBox';
 import Comments from "./Comments";
 import UserContext from '../components/Contexts/UserContext';
@@ -16,6 +16,7 @@ const PostPage = (props) => {
   const [likeData, setLikeData] = useState(null);
   const [body, setBody] = useState("");
   const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const history = useHistory();
 
@@ -57,7 +58,10 @@ const PostPage = (props) => {
     
     fetch(`/api/get_comments/${twatId}`)
       .then(data => data.json())
-      .then(data => setComments(data))
+      .then(data => {
+        setComments(data);
+        setLoading(false);
+      })
   }, []);
   
 
@@ -134,38 +138,43 @@ const PostPage = (props) => {
   };
 
   return(
-    <div className="row justify-content-center mx-0">
-      <div className="card col-md-6 m-3">
-        <img src={twatData.image} className="w-25" />
-        <h3><Link style={{textDecoration:"none"}} to={`/user/${twatData.user_id}`}>@{twatData.poster}</Link></h3>
-        <h3 style={{display: !statDisplay ? "block" : "none", cursor:"pointer"}} onClick={handleRedirect}>{twatData.body}</h3>
-        <textarea className="form-control" style={{display: statDisplay ? "block" : "none"}} value={body} onChange={handleChange}></textarea>
-        
-        <Button className="m-1" onClick={handleLike} style={{display: !statDisplay ? "block" : "none"}}>
-          {postLiked ? "Remove Like" : "Like"}
-        </Button>
-        
-        {
-        currUser.id == twatData.user_id ? 
-          <Button className="m-1" onClick={handleDisplay}>Edit</Button> 
-          : 
-          null
-        }
+    loading ? 
+      <div className="d-flex justify-content-center">
+        <Spinner animation="border" variant="primary" className="mt-5" style={{width: 200, height: 200}} />
+      </div>
+        :  
+      <div className="row justify-content-center mx-0">
+          <div className="card col-md-6 m-3">
+            <img src={twatData.image} className="w-25" />
+            <h3><Link style={{textDecoration:"none"}} to={`/user/${twatData.user_id}`}>@{twatData.poster}</Link></h3>
+            <h3 style={{display: !statDisplay ? "block" : "none", cursor:"pointer"}} onClick={handleRedirect}>{twatData.body}</h3>
+            <textarea className="form-control" style={{display: statDisplay ? "block" : "none"}} value={body} onChange={handleChange}></textarea>
+            
+            <Button className="m-1" onClick={handleLike} style={{display: !statDisplay ? "block" : "none"}}>
+              {postLiked ? "Remove Like" : "Like"}
+            </Button>
+            
+            {
+            currUser.id == twatData.user_id ? 
+              <Button className="m-1" onClick={handleDisplay}>Edit</Button> 
+              : 
+              null
+            }
 
-        <Button className="m-1" onClick={handleConfirm} style={{display: statDisplay ? "block" : "none"}}>Confirm</Button>
-        
-        {
-        currUser.id == twatData.user_id ? 
-          <Button className="m-1" onClick={() => handleDelete(twatData.id)} 
-                  style={{display: !statDisplay ? "block" : "none"}}>Delete</Button> 
-        : 
-          null
-        }
-        
-    </div>
-    <CommentBox setComments={setComments} postId={props.match.params.id} />
-    <Comments comments={comments} setComments={setComments} />
-  </div>
+            <Button className="m-1" onClick={handleConfirm} style={{display: statDisplay ? "block" : "none"}}>Confirm</Button>
+            
+            {
+            currUser.id == twatData.user_id ? 
+              <Button className="m-1" onClick={() => handleDelete(twatData.id)} 
+                      style={{display: !statDisplay ? "block" : "none"}}>Delete</Button> 
+            : 
+              null
+            }   
+        </div>
+        <CommentBox setComments={setComments} postId={props.match.params.id} />
+        <Comments comments={comments} setComments={setComments} />
+      </div>
+  
   )
 };  
 
