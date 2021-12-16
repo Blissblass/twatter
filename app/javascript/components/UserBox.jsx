@@ -1,8 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
-import { NavLink, useHistory, withRouter } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
+import UserContext from "./Contexts/UserContext";
+import { useContext } from "react";
 
 const UserBox = (props) => {
+  const { currUser } = useContext(UserContext);
 
   const [hover, setHover] = useState(false);
   const history = useHistory();
@@ -22,7 +25,7 @@ const UserBox = (props) => {
     className="card position-relative text-center"
     >
       {
-      props.user.id == props.currUser.id ? 
+      props.user.id == currUser.id ? 
         <h6>{props.user.username} <em>(You)</em></h6> 
           :
         <h6>{props.user.username}</h6>

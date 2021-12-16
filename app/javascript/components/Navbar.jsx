@@ -38,7 +38,7 @@ const navbar = (props) => {
 
         <Button onClick={handleLogout} className="text-med text-white nav navbar-nav px-4 ml-auto">Log Out</Button>
 
-        <NavbarForm currUser={props.currUser}/>
+        <NavbarForm />
       </Navbar>
     )
 

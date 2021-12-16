@@ -1,6 +1,5 @@
 import React from 'react';
 import UserBox from './UserBox';
-import { withRouter } from 'react-router';
 
 const FormResults = (props) => {
 
@@ -12,7 +11,7 @@ const FormResults = (props) => {
     return(
       <div>
         {props.users.map(user => (
-            <UserBox currUser={props.currUser} key={user.id} user={user} setQueryStr={props.setQueryStr}/>
+            <UserBox key={user.id} user={user} setQueryStr={props.setQueryStr}/>
           ))}
       </div>
     );

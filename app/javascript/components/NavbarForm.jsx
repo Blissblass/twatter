@@ -4,6 +4,7 @@ import { Form } from 'react-bootstrap';
 import { FormControl } from 'react-bootstrap';
 import FormResults from './FormResults';
 
+
 const NavbarForm = (props) => {
 
   const [queryStr, setQueryStr] = useState("");
@@ -45,7 +46,7 @@ const NavbarForm = (props) => {
         </FormControl>
         
       <div className="position-absolute">
-        <FormResults setQueryStr={setQueryStr} users={users} currUser={props.currUser} />
+        <FormResults setQueryStr={setQueryStr} users={users} />
       </div>
     </Form>
   )
