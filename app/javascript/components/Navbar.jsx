@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import { Navbar, Button } from 'react-bootstrap';
 import { LinkContainer } from "react-router-bootstrap";
 import NavbarForm from "./NavbarForm";
+import UserContext from "./Contexts/UserContext";
+import { useContext } from "react";
 
 const navbar = (props) => {
-  let currUser = props.currUser
+  const { currUser, setCurrUser } = useContext(UserContext);
 
   useEffect(() => {
   }, [currUser]);
@@ -18,10 +20,11 @@ const navbar = (props) => {
         'X-CSRF-Token': CSRF
       },
     });
-    props.setCurrUser({id: null, username: null});
+    setCurrUser(null);
+    localStorage.removeItem('currUser');
   };
 
-  if(currUser.id) {
+  if(currUser) {
     return(
       <Navbar bg="primary mx-0 float-right sticky-top ">
 

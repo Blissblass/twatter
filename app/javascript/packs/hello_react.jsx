@@ -15,7 +15,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = props => {
  
-  let [currUser, setCurrUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const [currUser, setCurrUser] = useState(JSON.parse(localStorage.getItem('currUser')));
   const [errors, setErrors] = useState([]); // Errors will be an array of strings
 
   useEffect(() => {
@@ -27,15 +27,17 @@ const App = props => {
       }
     })
     .then(data => data.json())
-      .then(data => setCurrUser(data));
+      .then(data => {setCurrUser(data)});
+
+    console.log(currUser)
   }, []);
 
  return(
    <div>
     <Router>
+    <UserContext.Provider value={{currUser, setCurrUser}}>
       <Navbar currUser={currUser} setCurrUser={setCurrUser}  />    
       <ErrorContext.Provider value={{errors, setErrors}}>
-        <UserContext.Provider value={{currUser, setCurrUser}}>
           <div className="container">
             <Switch>
               <Route exact path="/" render={(props) => <ProtectedRoute {...props} currUser={currUser} />} />
@@ -48,8 +50,8 @@ const App = props => {
             </Switch>
             <Errors />
           </div>
-        </UserContext.Provider>
       </ErrorContext.Provider>
+      </UserContext.Provider>
     </Router>
   </div>
  )

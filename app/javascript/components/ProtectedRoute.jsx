@@ -2,6 +2,8 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import Home from './Home';
 import Profile from './Profile'
+import UserContext from "./Contexts/UserContext";
+import { useContext } from "react";
 
 const ProtectedRoute = (props) => {
   return(
