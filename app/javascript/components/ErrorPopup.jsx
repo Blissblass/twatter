@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from "react";
 import { Alert } from "react-bootstrap";
 
@@ -7,7 +8,7 @@ const ErrorPopup = (props) => {
   const { error } = props;
 
   return(
-    <Alert variant="danger" show={show} onClose={handleClose} dismissable>
+    <Alert variant="danger" show={show} onClose={handleClose} dismissible>
       {error}
     </Alert>
   )
