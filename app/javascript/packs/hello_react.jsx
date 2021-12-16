@@ -9,6 +9,7 @@ import { LoginRedirect, SignupRedirect } from '../components/AuthRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../assets/stylesheets/application.css';
 import ErrorContext from '../components/Contexts/ErrorContext';
+import Errors from '../components/Errors';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = props => {
@@ -33,7 +34,7 @@ const App = props => {
    <div>
     <Router>
       <Navbar currUser={currUser} setCurrUser={setCurrUser}  />    
-      <ErrorContext value={{errors, setErrors}}>
+      <ErrorContext.Provider value={{errors, setErrors}}>
         <div className="container">
           <Switch>
             <Route exact path="/" render={(props) => <ProtectedRoute {...props} currUser={currUser} />} />
@@ -44,8 +45,9 @@ const App = props => {
             <Route exact path="/user/:id/followers" render={(props) => <UserFollowers {...props} />} />     
             <Route exact path="/post/:id" render={(props) => <PostPage {...props} currUser={currUser} />} />    
           </Switch>
+          <Errors />
         </div>
-      </ErrorContext>
+      </ErrorContext.Provider>
     </Router>
   </div>
  )

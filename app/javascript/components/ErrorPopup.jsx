@@ -7,8 +7,10 @@ const ErrorPopup = (props) => {
   const { error } = props;
 
   return(
-    <Alert variant="danger" show={show} onClose={handleClose}>
-      error
+    <Alert variant="danger" show={show} onClose={handleClose} dismissable>
+      {error}
     </Alert>
   )
 };
+
+export default ErrorPopup;

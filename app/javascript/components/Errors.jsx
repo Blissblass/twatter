@@ -8,3 +8,5 @@ const Errors = () => {
     errors.map(error => (<ErrorPopup error={error} />))
   );
 };
+
+export default Errors;
