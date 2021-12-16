@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     post '/follow_recommendations' => 'user#get_follow_recommendations'
     get '/get_twat/:id' => 'twats#get_twat'
     get '/get_comments/:id' => 'twats#get_twat_comments'
+    get '/twat_stats/:id' => 'twats#get_twat_stats'
   end
 
   Rails.application.routes.draw do

@@ -13,6 +13,8 @@ const PostButtons = (props) => {
 
   const [postLiked, setLiked] = useState(false);
   const [likeData, setLikeData] = useState(null);
+  const [likeCount, setLikeCount] = useState(0);
+  const [commentsCount, setCommentsCount] = useState(0)
 
   useEffect(() => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
@@ -33,14 +35,23 @@ const PostButtons = (props) => {
       .then(data => data.json())
       .then(data => {
         if(data.length > 0) {
-          console.log(data);
           setLikeData(data[0]);
           setLiked(true);
           return;
         }
         setLikeData([{}])
       });
+
+      fetch(`/api/twat_stats/${props.post.id}`)
+        .then(data => data.json())
+        .then(data => {
+          console.log(data);
+          setLikeCount(data.likes)
+          setCommentsCount(data.comments);
+        });
     }
+
+    
   }, [currUser.id]);
 
   const handleLike = (e) => {
@@ -59,7 +70,10 @@ const PostButtons = (props) => {
           'Content-Type': 'application/json',
           'X-CSRF-Token': CSRF
         },
-      }).then(setLiked(false));
+      }).then(data => {
+        setLiked(false);
+        setLikeCount(old => old -= 1);
+      });
     } else {
       fetch(`/likes`, {
         method: 'POST',
@@ -68,7 +82,10 @@ const PostButtons = (props) => {
           'X-CSRF-Token': CSRF
         },
         body: JSON.stringify(data)
-      }).then(setLiked(true));
+      }).then(data => {
+        setLiked(true);
+        setLikeCount(old => old += 1);
+      });
     }
   }
 
@@ -99,19 +116,19 @@ const PostButtons = (props) => {
       {postLiked ? 
         <div style={{display:"flex", alignItems:"center", marginRight: 27}}>
           <AiFillHeart style={{cursor: "pointer", fontSize: 50}} onClick={handleLike} /> 
-          <h4>33</h4> 
+          <h4>{likeCount}</h4> 
         </div>
       : 
         <div style={{display:"flex", alignItems:"center", marginRight: 27}}>
           <AiOutlineHeart style={{cursor: "pointer", fontSize: 50}} onClick={handleLike} />
-          <h4>33</h4> 
+          <h4>{likeCount}</h4> 
         </div>
 
       }
 
       <div style={{display:"flex", alignItems:"center", marginRight: 27}}>
         <IoChatbubbleOutline style={{cursor: "pointer", fontSize: 45}} />
-        <h4>43</h4>
+        <h4>{commentsCount}</h4>
       </div>
 
             

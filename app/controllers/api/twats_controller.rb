@@ -75,6 +75,8 @@ class Api::TwatsController < ApplicationController
   end
 
   def get_twat_stats
+    @twat = Twat.includes(:comments, :likes).find(params[:id])
+    render json: { likes: @twat.likes.count, comments: @twat.comments.count }
   end
 
 end
