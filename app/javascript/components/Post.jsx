@@ -3,6 +3,7 @@ import PostButtons from './PostButtons';
 import { Link, useHistory } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
+
 const Post = (props) => {
 
   const [statDisplay, setDisplay] = useState(false);

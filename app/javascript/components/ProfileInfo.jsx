@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from "react-router";
 import { Button } from "react-bootstrap";
-
+import UserContext from "./Contexts/UserContext";
+import { useContext } from "react";
 
 const ProfileInfo = (props) => {
+  const { currUser, setCurrUser } = useContext(UserContext);
+
   const addData = props.addData;
   const profUser = props.profUser;
 
@@ -15,7 +18,7 @@ const ProfileInfo = (props) => {
 
   const noChange = inputName == profUser.username && !inputFile
   const userId = props.match.params.id;
-  const ownProfile = props.currUser.id == userId;
+  const ownProfile = currUser.id == userId;
   const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
   useEffect(() => {
@@ -32,7 +35,7 @@ const ProfileInfo = (props) => {
           'X-CSRF-Token': CSRF
         },
         body: JSON.stringify({
-          "follower_id": props.currUser.id,
+          "follower_id": currUser.id,
           "followee_id": userId
         })
       })
@@ -42,7 +45,7 @@ const ProfileInfo = (props) => {
           setFollowing(true);
         };
       });
-  }, [props.currUser.id]);
+  }, [currUser.id]);
 
 
   const handleProfileEdit = () => {
@@ -57,7 +60,7 @@ const ProfileInfo = (props) => {
         body: JSON.stringify({user: {username: inputName}})
       })
       .then(data => data.json())
-      .then(data => props.setCurrUser(data))
+      .then(data => setCurrUser(data))
     }
 
     if(inputFile) {
@@ -83,7 +86,7 @@ const ProfileInfo = (props) => {
   const handleSubscription = (e) => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const data = {
-      "follower_id": props.currUser.id,
+      "follower_id": currUser.id,
       "followee_id": userId 
     };
 

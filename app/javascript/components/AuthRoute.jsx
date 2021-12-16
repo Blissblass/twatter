@@ -19,11 +19,4 @@ const SignupRedirect = (props) => {
   )
 }
 
-const AuthRoute = props => {
-  const { currUser } = useContext(UserContext);
-  return(
-    currUser ? <Redirect to="/" /> : props.component 
-  )
-};
-
 export { LoginRedirect, SignupRedirect }

@@ -1,9 +1,11 @@
 import React from "react";
 import ErrorContext from "./Contexts/ErrorContext";
 import { useContext } from "react";
+import UserContext from "./Contexts/UserContext";
 
 const SignUp = (props) => {
   const { setErrors } = useContext(ErrorContext);
+  const { setCurrUser } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,7 +48,8 @@ const SignUp = (props) => {
     })
     .then(data => data.json())
       .then(data => {
-        props.setCurrUser(data)
+        setCurrUser(data);
+        localStorage.setItem('currUser', JSON.stringify(data));
       })
   }
 

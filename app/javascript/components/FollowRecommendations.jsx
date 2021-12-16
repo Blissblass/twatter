@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import RecommendedUser from './RecommendedUser'
+import RecommendedUser from './RecommendedUser';
+import UserContext from "./Contexts/UserContext";
+import { useContext } from "react";
 
 const FollowRecommendations = (props) => {
+  const { currUser } = useContext(UserContext);
 
-  const [usersData, setUsersData] = useState([])
+  const [usersData, setUsersData] = useState([]);
   useEffect(()=> {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
@@ -14,7 +17,7 @@ const FollowRecommendations = (props) => {
         'X-CSRF-Token': CSRF
       },
       body: JSON.stringify({
-        id: props.currUser.id
+        id: currUser.id
       })
     })
     .then(data => data.json())

@@ -5,8 +5,11 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { ImPencil2 } from "react-icons/im";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { IoChatbubbleOutline } from "react-icons/io5";
+import UserContext from "./Contexts/UserContext";
+import { useContext } from "react";
 
 const PostButtons = (props) => {
+  const { currUser } = useContext(UserContext);
 
   const [postLiked, setLiked] = useState(false);
   const [likeData, setLikeData] = useState(null);
@@ -15,10 +18,10 @@ const PostButtons = (props) => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const data = {
       "id": props.post.id,
-      "user_id": props.currUser.id
+      "user_id": currUser.id
     }
 
-    if(props.post && props.currUser) {
+    if(props.post && currUser) {
       fetch(`/api/twat_exists`, {
         method: 'POST',
         headers: {
@@ -38,13 +41,13 @@ const PostButtons = (props) => {
         setLikeData([{}])
       });
     }
-  }, [props.currUser.id]);
+  }, [currUser.id]);
 
   const handleLike = (e) => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const data = {
       "like": {
-        "user_id": props.currUser.id,
+        "user_id": currUser.id,
         "twat_id": props.post.id
         } 
       };
@@ -113,7 +116,7 @@ const PostButtons = (props) => {
 
             
       {
-      props.currUser.id == props.post.user_id ? 
+      currUser.id == props.post.user_id ? 
       <div style={{marginRight: 27}}>
         <ImPencil2 className="m-1" style={{cursor: "pointer", fontSize: 35}} onClick={handleDisplay} />
       </div>  
@@ -126,7 +129,7 @@ const PostButtons = (props) => {
         style={{display: props.statDisplay ? "block" : "none", cursor: "pointer", fontSize: 50}} />
       
       {
-      props.currUser.id == props.post.user_id ? 
+      currUser.id == props.post.user_id ? 
         <FaRegTrashAlt className="m-1" onClick={() => props.handleDelete(props.post.id)} 
           style={{display: !props.statDisplay ? "block" : "none", cursor: "pointer", fontSize: 40}} /> 
       : 

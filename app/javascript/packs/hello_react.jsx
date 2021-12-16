@@ -27,7 +27,10 @@ const App = props => {
       }
     })
     .then(data => data.json())
-      .then(data => {setCurrUser(data)});
+      .then(data => {
+        setCurrUser(data);
+        localStorage.setItem('currUser', JSON.stringify(data));
+      });
 
     console.log(currUser)
   }, []);

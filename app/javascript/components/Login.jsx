@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import ErrorContext from "./Contexts/ErrorContext";
 import { useContext } from "react";
+import UserContext from "./Contexts/UserContext";
 
 const Login = (props) => {
   const { setErrors } = useContext(ErrorContext);
+  const { setCurrUser } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -11,9 +13,8 @@ const Login = (props) => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const userData = {
       user: {
-        "username": targets[0].value,
-        "email": targets[1].value,
-        "password": targets[2].value,
+        "email": targets[0].value,
+        "password": targets[1].value,
       }
     };
 
@@ -43,7 +44,8 @@ const Login = (props) => {
     })
     .then(data => data.json())
       .then(data => {
-        props.setCurrUser(data)
+        setCurrUser(data)
+        localStorage.setItem('currUser', JSON.stringify(data));
         console.log(data);
       });
   };

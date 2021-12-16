@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import UserContext from "./Contexts/UserContext";
+import { useContext } from "react";
 
 const TwatBox = props => {
+  const { currUser } = useContext(UserContext);
 
   const [body, setBody] = useState("");
   const [postMedia, setPostMedia] = useState(null);
   const [mediaURL, setMediaURL] = useState("");
-
-  useEffect(() => {
-
-  }, [props.currUser]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +18,7 @@ const TwatBox = props => {
     
     const formData = new FormData();
     formData.append("twat[body]", target.value);
-    formData.append("twat[user_id]", props.currUser.id);
+    formData.append("twat[user_id]", currUser.id);
     if(postMedia) {
       formData.append("twat[media]", postMedia);
     }
@@ -60,7 +59,7 @@ const TwatBox = props => {
 
   return(
       <div className="card col-md-6 mt-2 mx-3">
-        <h3>Welcome, {props.currUser.username}</h3>
+        <h3>Welcome, {currUser.username}</h3>
         
         { mediaURL ?
           <div>
