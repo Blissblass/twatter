@@ -46,7 +46,7 @@ const Login = (props) => {
       .then(data => {
         setCurrUser(data)
         localStorage.setItem('currUser', JSON.stringify(data));
-        console.log(data);
+        setErrors([]);
       });
   };
   
