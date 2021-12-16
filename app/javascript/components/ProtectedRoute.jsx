@@ -16,7 +16,7 @@ const ProtectedRoute = (props) => {
 const ProfileRedirect = (props) => {
   const { currUser } = useContext(UserContext);
   return(
-    currUser ? <Profile setCurrUser={props.setCurrUser} currUser={props.currUser} /> : <Redirect to="/" /> 
+    currUser ? <Profile /> : <Redirect to="/" /> 
   )
 };
 

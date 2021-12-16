@@ -31,16 +31,16 @@ const Profile = (props) => {
       setAddData(data.additionalData);
     });
 
-  }, [userId, props.currUser.username]);
+  }, [userId]);
 
 
 
 
   return(
     <div className="row justify-content-center mx-0 mt-3">
-      <ProfileInfo currUser={props.currUser} setCurrUser={props.setCurrUser} addData={addData} setAddData={setAddData} profUser={profUser} />
+      <ProfileInfo addData={addData} setAddData={setAddData} profUser={profUser} />
       
-      <Feed posts={profPosts} currUser={props.currUser} />
+      <Feed posts={profPosts} />
     </div>
   )
 };
