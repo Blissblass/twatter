@@ -7,6 +7,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { IoChatbubbleOutline } from "react-icons/io5";
 import UserContext from "./Contexts/UserContext";
 import { useContext } from "react";
+import { Link } from 'react-router-dom';
 
 const PostButtons = (props) => {
   const { currUser } = useContext(UserContext);
@@ -113,23 +114,22 @@ const PostButtons = (props) => {
   return(
     <div style={{display:"flex", alignItems:"center"}}>
 
-      {postLiked ? 
         <div style={{display:"flex", alignItems:"center", marginRight: 27}}>
+          {postLiked ? 
           <AiFillHeart style={{cursor: "pointer", fontSize: 50}} onClick={handleLike} /> 
-          <h4>{likeCount}</h4> 
-        </div>
-      : 
-        <div style={{display:"flex", alignItems:"center", marginRight: 27}}>
+            :
           <AiOutlineHeart style={{cursor: "pointer", fontSize: 50}} onClick={handleLike} />
-          <h4>{likeCount}</h4> 
+          } 
+          <h4 className="mt-2">{likeCount}</h4> 
         </div>
-
-      }
-
-      <div style={{display:"flex", alignItems:"center", marginRight: 27}}>
-        <IoChatbubbleOutline style={{cursor: "pointer", fontSize: 45}} />
-        <h4>{commentsCount}</h4>
-      </div>
+   
+        <Link to={`/post/${props.post.id}`} style={{ textDecoration: 'none', color:"#212529" }}>
+          <div style={{display:"flex", alignItems:"center", marginRight: 27}}>
+            <IoChatbubbleOutline style={{cursor: "pointer", fontSize: 45}} />
+            <h4 className="mt-2">{commentsCount}</h4>
+          </div>
+        </Link>
+     
 
             
       {
