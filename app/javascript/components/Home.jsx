@@ -5,6 +5,7 @@ import FollowRecommendations from './FollowRecommendations';
 
 const Home = (props) => {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/get_home_feed', {
@@ -16,7 +17,10 @@ const Home = (props) => {
       }
     })
     .then(data => data.json())
-      .then(data => {setPosts(data[0])});
+      .then(data => {
+        setPosts(data[0]);
+        setLoading(false);
+      });
   }, [])
 
   return(
@@ -24,7 +28,7 @@ const Home = (props) => {
       <div className="row mt-10 mx-0" style={{height:300}}>
         <FollowRecommendations />
         <TwatBox setPosts={setPosts} />      
-        <Feed posts={posts} setPosts={setPosts} />
+        <Feed posts={posts} setPosts={setPosts} loading={loading} />
       </div>
     </div>
     
