@@ -7,15 +7,17 @@ import { useContext } from "react";
 
 const LoginRedirect = (props) => {
   const { currUser } = useContext(UserContext);
+
   return(
-    currUser ? <Redirect to="/" /> : <Login setCurrUser={props.setCurrUser} /> 
+    currUser ? <Redirect to="/" /> : <Login /> 
   )
 };
 
 const SignupRedirect = (props) => {
   const { currUser } = useContext(UserContext);
+
   return(
-    currUser ? <Redirect to="/" /> : <SignUp setCurrUser={props.setCurrUser} /> 
+    currUser ? <Redirect to="/" /> : <SignUp /> 
   )
 }
 

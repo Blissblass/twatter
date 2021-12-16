@@ -25,7 +25,7 @@ const Feed = props => {
         props.posts ? 
         
         props.posts.map(post=> (
-          <Post key={post.id} post={post} handleDelete={handleDelete} currUser={props.currUser}/>
+          <Post key={post.id} post={post} handleDelete={handleDelete} />
           )
         ) 
         

@@ -22,9 +22,9 @@ const Home = (props) => {
   return(
     <div>
       <div className="row mt-10 mx-0" style={{height:300}}>
-        <FollowRecommendations currUser={props.currUser} />
-        <TwatBox currUser={props.currUser} setPosts={setPosts} />      
-        <Feed posts={posts} currUser={props.currUser} setPosts={setPosts} />
+        <FollowRecommendations />
+        <TwatBox setPosts={setPosts} />      
+        <Feed posts={posts} setPosts={setPosts} />
       </div>
     </div>
     

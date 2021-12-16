@@ -9,7 +9,7 @@ import { useContext } from "react";
 const ProtectedRoute = (props) => {
   const { currUser } = useContext(UserContext);
   return(
-    currUser ? <Home currUser={props.currUser} /> : <Redirect to ="/login" />
+    currUser ? <Home /> : <Redirect to ="/login" />
   )
 };
 

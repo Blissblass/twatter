@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PostButtons from './PostButtons';
 import { Link, useHistory } from "react-router-dom";
-import { Button } from "react-bootstrap";
 
 
 const Post = (props) => {
@@ -45,8 +44,8 @@ const Post = (props) => {
       <h3 style={{display: !statDisplay ? "block" : "none", cursor:"pointer"}} onClick={handleRedirect}>{props.post.body}</h3>
       <textarea className="form-control" style={{display: statDisplay ? "block" : "none"}} value={body} onChange={handleChange}></textarea>
       
-      <PostButtons post={props.post} currUser={props.currUser} statDisplay={statDisplay} 
-        setDisplay={setDisplay} body={body} handleDelete={props.handleDelete} />
+      <PostButtons post={props.post} statDisplay={statDisplay} setDisplay={setDisplay} body={body} 
+        handleDelete={props.handleDelete} />
       
   </div>
   )

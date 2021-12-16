@@ -43,13 +43,13 @@ const App = props => {
       <ErrorContext.Provider value={{errors, setErrors}}>
           <div className="container">
             <Switch>
-              <Route exact path="/" render={(props) => <ProtectedRoute {...props} currUser={currUser} />} />
-              <Route exact path="/login" render={(props) => <LoginRedirect {...props} currUser={currUser} setCurrUser={setCurrUser} />} />
-              <Route exact path="/signUp" render={(props) => <SignupRedirect {...props} currUser={currUser} setCurrUser={setCurrUser}/>} />
-              <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} setCurrUser={setCurrUser} currUser={currUser} />} />
+              <Route exact path="/" render={(props) => <ProtectedRoute {...props} />} />
+              <Route exact path="/login" render={(props) => <LoginRedirect {...props} />} />
+              <Route exact path="/signUp" render={(props) => <SignupRedirect {...props} />} />
+              <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} />} />
               <Route exact path="/user/:id/follows" render={(props) => <UserFollows {...props} />} />         
               <Route exact path="/user/:id/followers" render={(props) => <UserFollowers {...props} />} />     
-              <Route exact path="/post/:id" render={(props) => <PostPage {...props} currUser={currUser} />} />    
+              <Route exact path="/post/:id" render={(props) => <PostPage {...props} />} />    
             </Switch>
             <Errors />
           </div>
