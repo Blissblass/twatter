@@ -55,14 +55,6 @@ const Login = (props) => {
         <div className="card-body">
           <h4 className="card-title text-center mb-3">Log In</h4>
           <form onSubmit={handleSubmit}>
-            <label  htmlFor="user[username]" className="form-label text-med">Username</label>
-            <div className="input-group mb-3">
-              <div className="input-group-prepend"> 
-                <span className="input-group-text" id="basic-addon1">@</span>
-              </div>
-              <input  type="text"          className="form-control" id="user[username]" placeholder="Username" aria-describedby="basic-addon1" />
-            </div>
-
             <label  htmlFor="user[email]"    className="form-label text-med">Email Adress</label>
             <input  type="email"         className="form-control mb-3"          id="user[email]" placeholder="Email" />
 

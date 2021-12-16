@@ -8,7 +8,7 @@ const ErrorPopup = (props) => {
   const { error } = props;
 
   return(
-    <Alert variant="danger" show={show} onClose={handleClose} dismissible>
+    <Alert className="w-50 mx-auto" variant="danger" show={show} onClose={handleClose} dismissible>
       {error}
     </Alert>
   )
