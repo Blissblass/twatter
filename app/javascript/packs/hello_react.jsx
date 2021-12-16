@@ -8,12 +8,13 @@ import { ProtectedRoute, ProfileRedirect } from '../components/ProtectedRoute';
 import { LoginRedirect, SignupRedirect } from '../components/AuthRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../assets/stylesheets/application.css';
+import ErrorContext from '../components/Contexts/ErrorContext';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = props => {
  
   let [currUser, setCurrUser] = useState({id: null, username: null});
-  let [messages, setMessages] = useState([])
+  const [errors, setErrors] = useState([]); // Errors will be an array of strings
 
   useEffect(() => {
     fetch('http://127.0.0.1:3000/api/current_user', {
@@ -32,17 +33,19 @@ const App = props => {
    <div>
     <Router>
       <Navbar currUser={currUser} setCurrUser={setCurrUser}  />    
-      <div className="container">
-        <Switch>
-          <Route exact path="/" render={(props) => <ProtectedRoute {...props} currUser={currUser} />} />
-          <Route exact path="/login" render={(props) => <LoginRedirect {...props} currUser={currUser} setCurrUser={setCurrUser} />} />
-          <Route exact path="/signUp" render={(props) => <SignupRedirect {...props} currUser={currUser} setCurrUser={setCurrUser}/>} />
-          <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} setCurrUser={setCurrUser} currUser={currUser} />} />
-          <Route exact path="/user/:id/follows" render={(props) => <UserFollows {...props} />} />         
-          <Route exact path="/user/:id/followers" render={(props) => <UserFollowers {...props} />} />     
-          <Route exact path="/post/:id" render={(props) => <PostPage {...props} currUser={currUser} />} />    
-        </Switch>
-      </div>
+      <ErrorContext value={{errors, setErrors}}>
+        <div className="container">
+          <Switch>
+            <Route exact path="/" render={(props) => <ProtectedRoute {...props} currUser={currUser} />} />
+            <Route exact path="/login" render={(props) => <LoginRedirect {...props} currUser={currUser} setCurrUser={setCurrUser} />} />
+            <Route exact path="/signUp" render={(props) => <SignupRedirect {...props} currUser={currUser} setCurrUser={setCurrUser}/>} />
+            <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} setCurrUser={setCurrUser} currUser={currUser} />} />
+            <Route exact path="/user/:id/follows" render={(props) => <UserFollows {...props} />} />         
+            <Route exact path="/user/:id/followers" render={(props) => <UserFollowers {...props} />} />     
+            <Route exact path="/post/:id" render={(props) => <PostPage {...props} currUser={currUser} />} />    
+          </Switch>
+        </div>
+      </ErrorContext>
     </Router>
   </div>
  )
