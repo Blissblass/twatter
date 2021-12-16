@@ -30,12 +30,12 @@ const PostButtons = (props) => {
       .then(data => data.json())
       .then(data => {
         if(data.length > 0) {
+          console.log(data);
           setLikeData(data[0]);
           setLiked(true);
-          return true;
+          return;
         }
         setLikeData([{}])
-        return false;
       });
     }
   }, [props.currUser.id]);
