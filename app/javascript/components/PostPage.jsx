@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import CommentBox from './CommentBox';
 import Comments from "./Comments";
+import UserContext from '../components/Contexts/UserContext';
+import { useContext } from "react";
 
 const PostPage = (props) => {
+  const { currUser } = useContext(UserContext);
 
   const [twatData, setTwatData] = useState({});
   const [statDisplay, setDisplay] = useState(false);
@@ -20,10 +23,10 @@ const PostPage = (props) => {
     const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const data = {
       "id": twatData.id,
-      "user_id": props.currUser.id
+      "user_id": currUser.id
     }
 
-    if(twatData.id && props.currUser) {
+    if(twatData.id && currUser) {
       fetch(`/api/twat_exists`, {
         method: 'POST',
         headers: {
@@ -43,7 +46,7 @@ const PostPage = (props) => {
         return false;
       });
     }
-  }, [props.currUser.id, twatData.id]);
+  }, [currUser.id, twatData.id]);
 
   useEffect(() => {
     const twatId = props.match.params.id;
@@ -88,7 +91,7 @@ const PostPage = (props) => {
 
     const data = {
       "like": {
-        "user_id": props.currUser.id,
+        "user_id": currUser.id,
         "twat_id": twatData.id
         } 
       };
@@ -143,7 +146,7 @@ const PostPage = (props) => {
         </Button>
         
         {
-        props.currUser.id == twatData.user_id ? 
+        currUser.id == twatData.user_id ? 
           <Button className="m-1" onClick={handleDisplay}>Edit</Button> 
           : 
           null
@@ -152,7 +155,7 @@ const PostPage = (props) => {
         <Button className="m-1" onClick={handleConfirm} style={{display: statDisplay ? "block" : "none"}}>Confirm</Button>
         
         {
-        props.currUser.id == twatData.user_id ? 
+        currUser.id == twatData.user_id ? 
           <Button className="m-1" onClick={() => handleDelete(twatData.id)} 
                   style={{display: !statDisplay ? "block" : "none"}}>Delete</Button> 
         : 
@@ -160,7 +163,7 @@ const PostPage = (props) => {
         }
         
     </div>
-    <CommentBox currUser={props.currUser} setComments={setComments} postId={props.match.params.id} />
+    <CommentBox setComments={setComments} postId={props.match.params.id} />
     <Comments comments={comments} setComments={setComments} />
   </div>
   )
