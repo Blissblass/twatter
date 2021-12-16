@@ -2,23 +2,27 @@ import React from "react";
 import { Redirect } from "react-router"
 import Login from "./Login";
 import SignUp from "./SignUp"
-
+import UserContext from "./Contexts/UserContext";
+import { useContext } from "react";
 
 const LoginRedirect = (props) => {
+  const { currUser } = useContext(UserContext);
   return(
-    props.currUser.id ? <Redirect to="/" /> : <Login setCurrUser={props.setCurrUser} /> 
+    currUser ? <Redirect to="/" /> : <Login setCurrUser={props.setCurrUser} /> 
   )
 };
 
 const SignupRedirect = (props) => {
+  const { currUser } = useContext(UserContext);
   return(
-    props.currUser.id ? <Redirect to="/" /> : <SignUp setCurrUser={props.setCurrUser} /> 
+    currUser ? <Redirect to="/" /> : <SignUp setCurrUser={props.setCurrUser} /> 
   )
 }
 
 const AuthRoute = props => {
+  const { currUser } = useContext(UserContext);
   return(
-    props.currUser ? <Redirect to="/" /> : props.component 
+    currUser ? <Redirect to="/" /> : props.component 
   )
 };
 

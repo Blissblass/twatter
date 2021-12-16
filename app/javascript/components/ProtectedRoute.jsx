@@ -5,15 +5,18 @@ import Profile from './Profile'
 import UserContext from "./Contexts/UserContext";
 import { useContext } from "react";
 
+
 const ProtectedRoute = (props) => {
+  const { currUser } = useContext(UserContext);
   return(
-    props.currUser.id ? <Home currUser={props.currUser} /> : <Redirect to ="/login" />
+    currUser ? <Home currUser={props.currUser} /> : <Redirect to ="/login" />
   )
 };
 
 const ProfileRedirect = (props) => {
+  const { currUser } = useContext(UserContext);
   return(
-    props.currUser ? <Profile setCurrUser={props.setCurrUser} currUser={props.currUser} /> : <Redirect to="/" /> 
+    currUser ? <Profile setCurrUser={props.setCurrUser} currUser={props.currUser} /> : <Redirect to="/" /> 
   )
 };
 
