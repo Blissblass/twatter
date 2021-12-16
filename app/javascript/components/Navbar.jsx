@@ -32,8 +32,8 @@ const navbar = (props) => {
           <Navbar.Brand className="px-4 text-large text-white">Twatter</Navbar.Brand>
         </LinkContainer>
         
-        <LinkContainer to={`/user/${props.currUser.id}`}>
-          <Button className="text-med text-white nav navbar-nav px-4 btn-block ml-auto">{props.currUser.username}</Button>
+        <LinkContainer to={`/user/${currUser.id}`}>
+          <Button className="text-med text-white nav navbar-nav px-4 btn-block ml-auto">{currUser.username}</Button>
         </LinkContainer>
 
         <Button onClick={handleLogout} className="text-med text-white nav navbar-nav px-4 ml-auto">Log Out</Button>
