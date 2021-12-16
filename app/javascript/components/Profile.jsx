@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import Feed from "./Feed";
 import { withRouter } from "react-router";
 import ProfileInfo from './ProfileInfo';
+import { Spinner } from "react-bootstrap";
 
 const Profile = (props) => {
   const [profUser, setProfUser] = useState({});
   const [profPosts, setProfPosts] = useState([]);
   const [addData, setAddData] = useState({image: null, follows: null, followers: null});
+  const [loading, setLoading] = useState(true);
 
 
   const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
@@ -29,6 +31,7 @@ const Profile = (props) => {
       setProfUser(data.user);
       setProfPosts(data.twats);
       setAddData(data.additionalData);
+      setLoading(false);
     });
 
   }, [userId]);
@@ -37,11 +40,16 @@ const Profile = (props) => {
 
 
   return(
-    <div className="row justify-content-center mx-0 mt-3">
-      <ProfileInfo addData={addData} setAddData={setAddData} profUser={profUser} />
-      
-      <Feed posts={profPosts} />
-    </div>
+    loading ? 
+      <div className="w-100 d-flex justify-content-center">
+        <Spinner animation="border" variant="primary" className="mt-5" style={{width: 200, height: 200}} /> 
+      </div>
+    :
+      <div className="row justify-content-center mx-0 mt-3">
+        <ProfileInfo addData={addData} setAddData={setAddData} profUser={profUser} />
+        
+        <Feed posts={profPosts} />
+      </div>
   )
 };
 
