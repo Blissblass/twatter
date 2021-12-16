@@ -18,23 +18,6 @@ const App = props => {
   const [currUser, setCurrUser] = useState(JSON.parse(localStorage.getItem('currUser')));
   const [errors, setErrors] = useState([]); // Errors will be an array of strings
 
-  useEffect(() => {
-    fetch('http://127.0.0.1:3000/api/current_user', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(data => data.json())
-      .then(data => {
-        setCurrUser(data);
-        localStorage.setItem('currUser', JSON.stringify(data));
-      });
-
-    console.log(currUser)
-  }, []);
-
  return(
    <div>
     <Router>
