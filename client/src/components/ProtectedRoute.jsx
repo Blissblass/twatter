@@ -9,14 +9,14 @@ import { useContext } from "react";
 const ProtectedRoute = (props) => {
   const { currUser } = useContext(UserContext);
   return(
-    currUser ? <Home /> : <Redirect to="/twatter/login" />
+    currUser ? <Home /> : <Redirect to="/login" />
   )
 };
 
 const ProfileRedirect = (props) => {
   const { currUser } = useContext(UserContext);
   return(
-    currUser ? <Profile /> : <Redirect to="/twatter/home" /> 
+    currUser ? <Profile /> : <Redirect to="/home" /> 
   )
 };
 

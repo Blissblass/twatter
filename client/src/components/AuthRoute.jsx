@@ -9,7 +9,7 @@ const LoginRedirect = (props) => {
   const { currUser } = useContext(UserContext);
 
   return(
-    currUser ? <Redirect to="/twatter/home" /> : <Login /> 
+    currUser ? <Redirect to="/home" /> : <Login /> 
   )
 };
 
@@ -17,7 +17,7 @@ const SignupRedirect = (props) => {
   const { currUser } = useContext(UserContext);
 
   return(
-    currUser ? <Redirect to="/twatter/home" /> : <SignUp /> 
+    currUser ? <Redirect to="/home" /> : <SignUp /> 
   )
 }
 

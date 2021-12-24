@@ -26,11 +26,11 @@ const Navibar = (props) => {
     return(
       <Navbar bg="primary mx-0 float-right sticky-top ">
 
-        <LinkContainer to="/twatter/home">
+        <LinkContainer to="/home">
           <Navbar.Brand className="px-4 text-large text-white">Twatter</Navbar.Brand>
         </LinkContainer>
         
-        <LinkContainer to={`/twatter/user/${currUser.id}`}>
+        <LinkContainer to={`/user/${currUser.id}`}>
           <Button className="text-med text-white nav navbar-nav px-4 btn-block ml-auto">{currUser.username}</Button>
         </LinkContainer>
 
@@ -45,15 +45,15 @@ const Navibar = (props) => {
     return(
     <Navbar bg="primary mx-0" >
 
-      <LinkContainer to="/twatter/home">
+      <LinkContainer to="/home">
         <Navbar.Brand className="px-4 text-large text-white">Twatter</Navbar.Brand>
       </LinkContainer>
 
-      <LinkContainer to="/twatter/login">
+      <LinkContainer to="/login">
         <Button className="text-med text-white nav navbar-nav px-4 btn-block">Login</Button>
       </LinkContainer>
 
-      <LinkContainer to="/twatter/signUp">
+      <LinkContainer to="/signUp">
         <Button className="text-med text-white nav navbar-nav px-4 mr-auto">Sign up</Button>
       </LinkContainer>
 
