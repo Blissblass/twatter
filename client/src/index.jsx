@@ -27,13 +27,13 @@ const App = props => {
       <ErrorContext.Provider value={{errors, setErrors}}>
           <div className="container">
             <Switch>,
-              <Route exact path="/" render={(props) => <ProtectedRoute {...props} />} />
-              <Route exact path="/login" render={(props) => <LoginRedirect {...props} />} />
-              <Route exact path="/signUp" render={(props) => <SignupRedirect {...props} />} />
-              <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} />} />
-              <Route exact path="/user/:id/follows" render={(props) => <UserFollows {...props} />} />         
-              <Route exact path="/user/:id/followers" render={(props) => <UserFollowers {...props} />} />     
-              <Route exact path="/post/:id" render={(props) => <PostPage {...props} />} />  
+              <Route exact path="twatter/home" render={(props) => <ProtectedRoute {...props} />} />
+              <Route exact path="twatter/login" render={(props) => <LoginRedirect {...props} />} />
+              <Route exact path="twatter/signUp" render={(props) => <SignupRedirect {...props} />} />
+              <Route exact path="twatter/user/:id" render={(props) => <ProfileRedirect {...props} />} />
+              <Route exact path="twatter/user/:id/follows" render={(props) => <UserFollows {...props} />} />         
+              <Route exact path="twatter/user/:id/followers" render={(props) => <UserFollowers {...props} />} />     
+              <Route exact path="twatter/post/:id" render={(props) => <PostPage {...props} />} />  
               <Route path="*" render={(props) => <NoMatch {...props} />} />
             </Switch>
             <Errors />
