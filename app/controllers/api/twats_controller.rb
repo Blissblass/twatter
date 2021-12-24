@@ -24,7 +24,7 @@ class Api::TwatsController < ApplicationController
     current_user = User.find(params[:id])
     return unless current_user
     
-    main_preload = Twat.where(user_id: current_user.id ).or(Post.where(user_id: f.followee_id)).includes(:user)
+    main_preload = Twat.where(user_id: current_user.id ).or(Twat.where(user_id: f.followee_id)).includes(:user)
       .order(created_at: :desc)
     @twats = main_preload.map do |twat|
       if twat.media.attached?
