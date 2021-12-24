@@ -12,14 +12,14 @@ const UserBox = (props) => {
 
   const handleClick = (e) => {
     props.setQueryStr("");
-    history.push(`/twatter/user/${props.user.id}`);
+    history.push(`/user/${props.user.id}`);
   };
 
   return(
     <div 
     onMouseEnter={(e) => setHover(true)}
     onMouseLeave={() => setHover(false)}
-    onClick={handleClick}
+    onMouseDown={handleClick}
     style={{backgroundColor: hover ? '#e9e9e9' : 'white', cursor: hover ? 'pointer' : '', width: 300}} 
     className="card position-relative text-center"
     >

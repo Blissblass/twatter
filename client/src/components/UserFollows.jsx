@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router';
 import UserProfileBox from './UserProfileBox';
+import { Spinner } from 'react-bootstrap';
 
 const UserFollows = (props) => {
 
   const [follows, setFollows] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
 
@@ -16,12 +18,18 @@ const UserFollows = (props) => {
       body: JSON.stringify({id: props.match.params.id})
     })
       .then(data => data.json())
-      .then(data => setFollows(data));
+      .then(data => {
+        setFollows(data);
+        setLoading(false);
+      });
   }, [props.match.params.id])
 
   return(
     <div className="row justify-content-center mx-0">
       {
+        loading ? 
+          <Spinner animation="border" variant="primary" className="mx-auto mt-4" style={{width: 100, height: 100}} />
+        :  
         follows.length ? 
           follows.map(data => <UserProfileBox data={data} key={data[0].id} />)
         :
