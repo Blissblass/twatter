@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/twatter/static/css/main.3e1941f8.css",
-    "main.js": "/twatter/static/js/main.df05a28d.js",
+    "main.js": "/twatter/static/js/main.4e286fa8.js",
     "index.html": "/twatter/index.html",
     "main.3e1941f8.css.map": "/twatter/static/css/main.3e1941f8.css.map",
-    "main.df05a28d.js.map": "/twatter/static/js/main.df05a28d.js.map"
+    "main.4e286fa8.js.map": "/twatter/static/js/main.4e286fa8.js.map"
   },
   "entrypoints": [
     "static/css/main.3e1941f8.css",
-    "static/js/main.df05a28d.js"
+    "static/js/main.4e286fa8.js"
   ]
 }
