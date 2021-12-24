@@ -54,7 +54,6 @@ const PostButtons = (props) => {
   }, [currUser, currUser.id, props.post]);
 
   const handleLike = (e) => {
-    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const data = {
       "like": {
         "user_id": currUser.id,
@@ -67,7 +66,6 @@ const PostButtons = (props) => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRF-Token': CSRF
         },
       }).then(data => {
         setLiked(false);
@@ -78,7 +76,6 @@ const PostButtons = (props) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRF-Token': CSRF
         },
         body: JSON.stringify(data)
       }).then(data => {
@@ -92,12 +89,10 @@ const PostButtons = (props) => {
     const newPost = props.post;
     newPost.body = props.body;
 
-    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     fetch(`/twats/${newPost.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': CSRF
       },
       body: JSON.stringify(newPost)
     });
