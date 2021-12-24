@@ -24,8 +24,7 @@ class Api::TwatsController < ApplicationController
     current_user = User.find(params[:id])
     return unless current_user
     
-    main_preload = Twat.where(user_id: current_user.id ).or(Twat.where(user_id: f.followee_id)).includes(:user)
-      .order(created_at: :desc)
+    main_preload = Twat.where(user_id: current_user.id ).includes(:user).order(created_at: :desc)
     @twats = main_preload.map do |twat|
       if twat.media.attached?
         twat.attributes.merge(
@@ -40,6 +39,27 @@ class Api::TwatsController < ApplicationController
           'image' =>  url_for(twat.user.image)
         )
       end
+    end
+
+    current_user.follows.each do |f|
+      preload = Twat.where(user_id: f.followee_id).includes(:user).order(created_at: :desc)
+                    
+      user_twats = preload.map do |twat|
+        if twat.media.attached?
+          twat.attributes.merge(
+            'poster' => twat.user.username,
+            'image' =>  url_for(twat.user.image),
+            'media' => url_for(twat.media),
+            'media_type' => twat.media.content_type
+          )
+        else
+          twat.attributes.merge(
+            'poster' => twat.user.username,
+            'image' =>  url_for(twat.user.image)
+          )
+        end
+      end
+      @twats << user_twats
     end
     
     if @twats
