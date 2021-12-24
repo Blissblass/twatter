@@ -11,6 +11,7 @@ import './stylesheets/application.css';
 import ErrorContext from './components/Contexts/ErrorContext';
 import Errors from './components/Errors';
 import UserContext from './components/Contexts/UserContext';
+import NoMatch from './components/NoMatch';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = props => {
@@ -25,14 +26,15 @@ const App = props => {
       <Navibar currUser={currUser} setCurrUser={setCurrUser}  />    
       <ErrorContext.Provider value={{errors, setErrors}}>
           <div className="container">
-            <Switch>
+            <Switch>,
               <Route exact path="/" render={(props) => <ProtectedRoute {...props} />} />
               <Route exact path="/login" render={(props) => <LoginRedirect {...props} />} />
               <Route exact path="/signUp" render={(props) => <SignupRedirect {...props} />} />
               <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} />} />
               <Route exact path="/user/:id/follows" render={(props) => <UserFollows {...props} />} />         
               <Route exact path="/user/:id/followers" render={(props) => <UserFollowers {...props} />} />     
-              <Route exact path="/post/:id" render={(props) => <PostPage {...props} />} />    
+              <Route exact path="/post/:id" render={(props) => <PostPage {...props} />} />  
+              <Route path="*" render={(props) => <NoMatch {...props} />} />
             </Switch>
             <Errors />
           </div>
