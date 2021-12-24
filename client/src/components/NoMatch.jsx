@@ -1,4 +1,4 @@
-import { Redirect } from "react-router/cjs/react-router";
+import { Redirect } from "react-router-dom";
 
 const NoMatch = () => {
 
