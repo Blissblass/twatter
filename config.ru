@@ -10,7 +10,8 @@ use Rack::Cors do
 
   # allow all origins in development
   allow do
-    origins 'https://blissblass.github.io'
+    origins '*'
+    
     resource '*', 
         :headers => :any, 
         :methods => [:get, :post, :delete, :put, :options]
