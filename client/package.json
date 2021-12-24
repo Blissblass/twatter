@@ -1,7 +1,7 @@
 {
   "name": "twatter",
   "version": "0.1.0",
-  "proxy": "http://localhost:3001",
+  "proxy": "https://twatter-backend-api.herokuapp.com",
   "homepage": "http://blissblass.github.io/twatter/",
   "private": true,
   "dependencies": {
