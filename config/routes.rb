@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html  resources :twats
+  resources :twats
   resources :likes, only: [:index, :new, :create, :destroy]
   resources :follows, only: [:index, :new, :create, :destroy]
   resources :comments, only: [:index, :new, :create, :update, :edit, :destroy]

@@ -14,7 +14,6 @@ const TwatBox = props => {
     e.preventDefault();
 
     const target = e.currentTarget[0];
-    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     
     const formData = new FormData();
     formData.append("twat[body]", target.value);
@@ -27,7 +26,6 @@ const TwatBox = props => {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'X-CSRF-Token': CSRF
       },
       body: formData
     })
