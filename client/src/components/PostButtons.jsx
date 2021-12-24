@@ -116,7 +116,7 @@ const PostButtons = (props) => {
           <h4 className="mt-2">{likeCount}</h4> 
         </div>
    
-        <Link to={`/post/${props.post.id}`} style={{ textDecoration: 'none', color:"#212529" }}>
+        <Link to={`/twatter/post/${props.post.id}`} style={{ textDecoration: 'none', color:"#212529" }}>
           <div style={{display:"flex", alignItems:"center", marginRight: 27}}>
             <IoChatbubbleOutline style={{cursor: "pointer", fontSize: 45}} />
             <h4 className="mt-2">{commentsCount}</h4>
