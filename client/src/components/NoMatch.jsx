@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 const NoMatch = () => {
 
   return(
-    <Redirect to="/" />
+    <Redirect to="/twatter/home" />
   )
 };
 
