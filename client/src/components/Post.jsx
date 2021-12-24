@@ -14,7 +14,7 @@ const Post = (props) => {
   };
 
   const handleRedirect = () => {
-    history.push(`/post/${props.post.id}`);
+    history.push(`/twatter/post/${props.post.id}`);
   };
 
 

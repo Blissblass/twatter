@@ -30,7 +30,7 @@ const Navibar = (props) => {
           <Navbar.Brand className="px-4 text-large text-white">Twatter</Navbar.Brand>
         </LinkContainer>
         
-        <LinkContainer to={`/user/${currUser.id}`}>
+        <LinkContainer to={`/twatter/user/${currUser.id}`}>
           <Button className="text-med text-white nav navbar-nav px-4 btn-block ml-auto">{currUser.username}</Button>
         </LinkContainer>
 
@@ -49,11 +49,11 @@ const Navibar = (props) => {
         <Navbar.Brand className="px-4 text-large text-white">Twatter</Navbar.Brand>
       </LinkContainer>
 
-      <LinkContainer to="/login">
+      <LinkContainer to="/twatter/login">
         <Button className="text-med text-white nav navbar-nav px-4 btn-block">Login</Button>
       </LinkContainer>
 
-      <LinkContainer to="/signUp">
+      <LinkContainer to="/twatter/signUp">
         <Button className="text-med text-white nav navbar-nav px-4 mr-auto">Sign up</Button>
       </LinkContainer>
 

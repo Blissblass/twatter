@@ -12,7 +12,7 @@ const UserBox = (props) => {
 
   const handleClick = (e) => {
     props.setQueryStr("");
-    history.push(`/user/${props.user.id}`);
+    history.push(`/twatter/user/${props.user.id}`);
   };
 
   return(
