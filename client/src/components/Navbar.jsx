@@ -26,7 +26,7 @@ const Navibar = (props) => {
     return(
       <Navbar bg="primary mx-0 float-right sticky-top ">
 
-        <LinkContainer to="/">
+        <LinkContainer to="/twatter/home">
           <Navbar.Brand className="px-4 text-large text-white">Twatter</Navbar.Brand>
         </LinkContainer>
         
@@ -45,7 +45,7 @@ const Navibar = (props) => {
     return(
     <Navbar bg="primary mx-0" >
 
-      <LinkContainer to="/">
+      <LinkContainer to="/twatter/home">
         <Navbar.Brand className="px-4 text-large text-white">Twatter</Navbar.Brand>
       </LinkContainer>
 

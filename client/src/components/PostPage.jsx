@@ -121,7 +121,7 @@ const PostPage = (props) => {
       }
     });
 
-    history.push('/')
+    history.push('/twatter/home')
   };
 
   const handleRedirect = () => {
