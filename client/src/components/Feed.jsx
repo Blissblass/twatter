@@ -29,7 +29,7 @@ const Feed = props => {
           props.loading ?
             <Spinner animation="border" variant="primary" className="mx-auto mt-4" style={{width: 100, height: 100}} />
           :
-            props.posts ? 
+            props.posts.length ? 
             
             props.posts.map(post=> (
               <Post key={post.id} post={post} handleDelete={handleDelete} />
