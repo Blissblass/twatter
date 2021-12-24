@@ -7,7 +7,7 @@ const Errors = () => {
   const { errors } = useContext(ErrorContext);
 
   return(
-    errors.map(error => (<ErrorPopup error={error} />))
+    errors.map((error, idx) => (<ErrorPopup key={idx} error={error} />))
   );
 };
 
