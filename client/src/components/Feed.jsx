@@ -7,12 +7,10 @@ import { useEffect } from "react";
 const Feed = props => {
 
   const handleDelete = (postId) => {
-    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     fetch(`/twats/${postId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': CSRF
       }
     });
 

@@ -12,12 +12,10 @@ const Navibar = (props) => {
   }, [currUser]);
 
   const handleLogout = () => {
-    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content")
     fetch("/users/sign_out", {
       method: "DELETE",   
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': CSRF
       },
     });
     setCurrUser(null);

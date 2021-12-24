@@ -16,14 +16,12 @@ const NavbarForm = (props) => {
     const data = {
       'query': currentTarget.value
     };
-    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 
     if(queryStr.length > 1) {
       fetch('/api/search_user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRF-Token': CSRF
         },
         body: JSON.stringify(data)
       })

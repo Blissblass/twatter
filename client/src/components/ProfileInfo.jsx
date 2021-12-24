@@ -80,7 +80,6 @@ const ProfileInfo = (props) => {
   }
 
   const handleSubscription = (e) => {
-    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const data = {
       "follower_id": currUser.id,
       "followee_id": userId 
@@ -93,7 +92,6 @@ const ProfileInfo = (props) => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRF-Token': CSRF
         },
         body: JSON.stringify(data)
       });
@@ -108,7 +106,6 @@ const ProfileInfo = (props) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRF-Token': CSRF
         },
         body: JSON.stringify(data)
       });

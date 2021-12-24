@@ -11,7 +11,6 @@ const CommentBox = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const data ={
       comment: {
         "user_id": currUser.id,
@@ -24,7 +23,6 @@ const CommentBox = (props) => {
       method: 'POST',        
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': CSRF
       },
       body: JSON.stringify(data)
     })

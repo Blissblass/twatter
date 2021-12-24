@@ -75,12 +75,10 @@ const PostPage = (props) => {
     const newPost = twatData;
     newPost.body = body;
 
-    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     fetch(`/twats/${newPost.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': CSRF
       },
       body: JSON.stringify(newPost)
     });
@@ -89,7 +87,6 @@ const PostPage = (props) => {
   };
 
   const handleLike = (e) => {
-    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
     const data = {
       "like": {
@@ -103,7 +100,6 @@ const PostPage = (props) => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRF-Token': CSRF
         },
       }).then(setLiked(false));
     } else {
@@ -111,7 +107,6 @@ const PostPage = (props) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRF-Token': CSRF
         },
         body: JSON.stringify(data)
       }).then(setLiked(true));
@@ -119,12 +114,10 @@ const PostPage = (props) => {
   }
 
   const handleDelete = (postId) => {
-    const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     fetch(`/twats/${postId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': CSRF
       }
     });
 
