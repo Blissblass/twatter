@@ -59,7 +59,7 @@ class Api::TwatsController < ApplicationController
           )
         end
       end
-      @twats << user_twats
+      @twats << *user_twats
     end
     
     if @twats
