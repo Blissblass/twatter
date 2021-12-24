@@ -8,12 +8,10 @@ const UserFollowers = (props) => {
   
     useEffect(() => {
   
-      const CSRF = document.querySelector("meta[name='csrf-token']").getAttribute("content");
       fetch('/api/user_followers', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRF-Token': CSRF
         },
         body: JSON.stringify({id: props.match.params.id})
       })
@@ -23,7 +21,12 @@ const UserFollowers = (props) => {
   
     return(
       <div className="row justify-content-center mx-0">
-        {followers.map(data => <UserProfileBox data={data} key={data[0].id} />)}
+        {
+          followers.length ? 
+            followers.map(data => <UserProfileBox data={data} key={data[0].id} />)
+          :
+            <h1 className="text-center">User doesn't follow anyone :(</h1>  
+        }
       </div>
     )
 }

@@ -18,7 +18,7 @@ const ProfileInfo = (props) => {
 
   const noChange = inputName === profUser.username && !inputFile
   const userId = props.match.params.id;
-  const ownProfile = currUser.id === userId;
+  const ownProfile = currUser.id === parseInt(userId);
 
   useEffect(() => {
     if(profUser.username) {
