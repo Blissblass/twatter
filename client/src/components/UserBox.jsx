@@ -19,7 +19,6 @@ const UserBox = (props) => {
     <div 
     onMouseEnter={(e) => setHover(true)}
     onMouseLeave={() => setHover(false)}
-    onMouseDown={handleClick}
     onClick={handleClick}
     style={{backgroundColor: hover ? '#e9e9e9' : 'white', cursor: hover ? 'pointer' : '', width: 300}} 
     className="card position-relative text-center"

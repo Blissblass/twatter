@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import TwatBox from './TwatBox';
 import Feed from './Feed';
 import FollowRecommendations from './FollowRecommendations';
+import UserContext from "./Contexts/UserContext";
 
 const Home = (props) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { currUser } = useContext(UserContext);
 
   useEffect(() => {
-    fetch('/api/get_home_feed', {
+    fetch(`/api/get_home_feed/${currUser.id}`, {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -21,7 +23,7 @@ const Home = (props) => {
         setPosts(data);
         setLoading(false);
       });
-  }, [])
+  }, [currUser.id])
 
   return(
     <div>

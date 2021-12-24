@@ -1,16 +1,5 @@
 class Api::UserController < ApplicationController 
 
-  def get_current_user
-    @user = current_user
-    
-    if @user
-      data = {username: @user.username, id: @user.id, image: url_for(@user.image)}
-      render json: data
-    else
-      render body: nil, status: 404
-    end
-  end
-
   def get_user_profile
     @user = User.includes(:twats).find_by(id: params[:id])
     @twats = @user.twats.order(created_at: :desc).map do |twat|
@@ -49,13 +38,15 @@ class Api::UserController < ApplicationController
   end
 
   def change_user_image
-    return if params[:img].nil?
+    return if params[:img].nil? || params[:id].nil?
+
+    current_user = User.find(params[:id])
 
     current_user.image.attach(io: params[:img], filename: "profPic#{current_user.id}", content_type: "image/jpg" )
   end
 
   def update_user
-    @user = current_user
+    @user = User.find(params[:id])
 
     if @user.update(user_params)
       render json: @user 
@@ -87,7 +78,7 @@ class Api::UserController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.follows.empty?
-      recommendations = User.where.not(id: current_user.id).order(Arel.sql('RANDOM()')).limit(3)
+      recommendations = User.where.not(id: @user.id).order(Arel.sql('RANDOM()')).limit(3)
       data = recommendations.map { |user| { user: user, image: url_for(user.image) } }
 
       render json: data
@@ -96,7 +87,7 @@ class Api::UserController < ApplicationController
       
       recommendations = []
       # We make 2 restrictions for the query, the user *must* have at least 1 follower, and the user must *not* be the current user
-      first_users.each { |user| recommendations << get_random_user_follow(user) }
+      first_users.each { |user| recommendations << get_random_user_follow(user, @user.id) }
 
       data = recommendations
           .filter { |user| user != nil }
@@ -112,7 +103,8 @@ class Api::UserController < ApplicationController
     params.require(:user).permit(:username)
   end
 
-  def get_random_user_follow(user)
+  def get_random_user_follow(user, userId)
+    current_user = User.find(userId)
     follow = user.follows.where.not(followee_id: current_user.id).order(Arel.sql('RANDOM()')).limit(1)[0]
     return nil if follow.nil? || user.id == current_user.id
     follow.followee

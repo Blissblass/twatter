@@ -49,7 +49,7 @@ const ProfileInfo = (props) => {
   const handleProfileEdit = () => {
 
     if(inputName !== profUser.username) {
-      fetch('/api/update_user', {
+      fetch(`/api/update_user/${currUser.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ const ProfileInfo = (props) => {
     if(inputFile) {
       const formData = new FormData();
       formData.append('img', inputFile)
-      fetch('/api/change_user_image', {
+      fetch(`/api/change_user_image/${currUser.id}`, {
         method: 'PATCH',
         headers: {
           'Accept': 'application/json',
