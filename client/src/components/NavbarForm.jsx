@@ -18,7 +18,7 @@ const NavbarForm = (props) => {
     };
 
     if(queryStr.length > 1) {
-      fetch('/api/search_user', {
+      fetch('https://twatter-backend-api.herokuapp.com/api/search_user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

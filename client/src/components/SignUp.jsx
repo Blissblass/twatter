@@ -19,7 +19,7 @@ const SignUp = (props) => {
       }
     };
 
-    fetch('/users', {
+    fetch('https://twatter-backend-api.herokuapp.com/users', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',

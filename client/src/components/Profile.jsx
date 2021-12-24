@@ -13,7 +13,7 @@ const Profile = (props) => {
   const userId = props.match.params.id;
 
   useEffect(() => {
-    fetch(`/api/get_user_profile`, {
+    fetch(`https://twatter-backend-api.herokuapp.com/api/get_user_profile`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

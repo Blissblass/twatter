@@ -12,7 +12,7 @@ const Navibar = (props) => {
   }, [currUser]);
 
   const handleLogout = () => {
-    fetch("/users/sign_out", {
+    fetch("https://twatter-backend-api.herokuapp.com/users/sign_out", {
       method: "DELETE",   
       headers: {
         'Content-Type': 'application/json',

@@ -11,7 +11,7 @@ const FollowRecommendations = (props) => {
   const [usersData, setUsersData] = useState([]);
   useEffect(()=> {
 
-    fetch('/api/follow_recommendations', {
+    fetch('https://twatter-backend-api.herokuapp.com/api/follow_recommendations', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

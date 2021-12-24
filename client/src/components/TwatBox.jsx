@@ -22,7 +22,7 @@ const TwatBox = props => {
       formData.append("twat[media]", postMedia);
     }
 
-    fetch('/twats', {
+    fetch('https://twatter-backend-api.herokuapp.com/twats', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

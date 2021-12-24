@@ -19,7 +19,7 @@ const CommentBox = (props) => {
       }
     }
 
-    fetch('/comments', {
+    fetch('https://twatter-backend-api.herokuapp.com/comments', {
       method: 'POST',        
       headers: {
         'Content-Type': 'application/json',

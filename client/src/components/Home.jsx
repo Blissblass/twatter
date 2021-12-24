@@ -10,7 +10,7 @@ const Home = (props) => {
   const { currUser } = useContext(UserContext);
 
   useEffect(() => {
-    fetch(`/api/get_home_feed/${currUser.id}`, {
+    fetch(`https://twatter-backend-api.herokuapp.com/api/get_home_feed/${currUser.id}`, {
       method: 'GET',
       credentials: 'include',
       headers: {

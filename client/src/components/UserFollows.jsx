@@ -8,7 +8,7 @@ const UserFollows = (props) => {
 
   useEffect(() => {
 
-    fetch('/api/user_follows', {
+    fetch('https://twatter-backend-api.herokuapp.com/api/user_follows', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

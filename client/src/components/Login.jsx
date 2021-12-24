@@ -17,7 +17,7 @@ const Login = (props) => {
       }
     };
 
-    fetch('/users/sign_in', {
+    fetch('https://twatter-backend-api.herokuapp.com/users/sign_in', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',

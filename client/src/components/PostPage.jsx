@@ -27,7 +27,7 @@ const PostPage = (props) => {
     }
 
     if(twatData.id && currUser) {
-      fetch(`/api/twat_exists`, {
+      fetch(`https://twatter-backend-api.herokuapp.com/api/twat_exists`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,11 +50,11 @@ const PostPage = (props) => {
   useEffect(() => {
     const twatId = props.match.params.id;
 
-    fetch(`/api/get_twat/${twatId}`)
+    fetch(`https://twatter-backend-api.herokuapp.com/api/get_twat/${twatId}`)
       .then(data => data.json())
       .then(data => {setTwatData(data); setBody(data.body)})
     
-    fetch(`/api/get_comments/${twatId}`)
+    fetch(`https://twatter-backend-api.herokuapp.com/api/get_comments/${twatId}`)
       .then(data => data.json())
       .then(data => {
         setComments(data);
@@ -75,7 +75,7 @@ const PostPage = (props) => {
     const newPost = twatData;
     newPost.body = body;
 
-    fetch(`/twats/${newPost.id}`, {
+    fetch(`https://twatter-backend-api.herokuapp.com/twats/${newPost.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -96,14 +96,14 @@ const PostPage = (props) => {
       };
       
     if(postLiked) {
-      fetch(`/likes/${likeData.id}`, {
+      fetch(`https://twatter-backend-api.herokuapp.com/likes/${likeData.id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
       }).then(setLiked(false));
     } else {
-      fetch(`/likes`, {
+      fetch(`https://twatter-backend-api.herokuapp.com/likes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -114,7 +114,7 @@ const PostPage = (props) => {
   }
 
   const handleDelete = (postId) => {
-    fetch(`/twats/${postId}`, {
+    fetch(`https://twatter-backend-api.herokuapp.com/twats/${postId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

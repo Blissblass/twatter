@@ -7,7 +7,7 @@ import { useEffect } from "react";
 const Feed = props => {
 
   const handleDelete = (postId) => {
-    fetch(`/twats/${postId}`, {
+    fetch(`https://twatter-backend-api.herokuapp.com/twats/${postId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

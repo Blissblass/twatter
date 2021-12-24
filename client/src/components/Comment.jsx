@@ -7,7 +7,7 @@ const Comment = (props) => {
 
   const handleDelete = () => {
 
-    fetch(`/comments/${props.comment.id}`, {
+    fetch(`https://twatter-backend-api.herokuapp.com/comments/${props.comment.id}`, {
       method: 'DELETE',      
       headers: {
         'Content-Type': 'application/json',

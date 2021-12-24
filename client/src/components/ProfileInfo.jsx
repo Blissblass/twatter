@@ -27,7 +27,7 @@ const ProfileInfo = (props) => {
   }, [profUser.username]);
 
   useEffect(() => {
-    fetch('/api/already_following', {
+    fetch('https://twatter-backend-api.herokuapp.com/api/already_following', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const ProfileInfo = (props) => {
   const handleProfileEdit = () => {
 
     if(inputName !== profUser.username) {
-      fetch(`/api/update_user/${currUser.id}`, {
+      fetch(`https://twatter-backend-api.herokuapp.com/api/update_user/${currUser.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ const ProfileInfo = (props) => {
     if(inputFile) {
       const formData = new FormData();
       formData.append('img', inputFile)
-      fetch(`/api/change_user_image/${currUser.id}`, {
+      fetch(`https://twatter-backend-api.herokuapp.com/api/change_user_image/${currUser.id}`, {
         method: 'PATCH',
         headers: {
           'Accept': 'application/json',
@@ -88,7 +88,7 @@ const ProfileInfo = (props) => {
     e.preventDefault();
 
     if(isFollowing) {
-      fetch('/api/unfollow', {
+      fetch('https://twatter-backend-api.herokuapp.com/api/unfollow', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ const ProfileInfo = (props) => {
     } 
 
     else {
-      fetch('/follows', {
+      fetch('https://twatter-backend-api.herokuapp.com/follows', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

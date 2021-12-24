@@ -24,7 +24,7 @@ const PostButtons = (props) => {
     }
 
     if(props.post && currUser) {
-      fetch(`/api/twat_exists`, {
+      fetch(`https://twatter-backend-api.herokuapp.com/api/twat_exists`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const PostButtons = (props) => {
         setLikeData([{}])
       });
 
-      fetch(`/api/twat_stats/${props.post.id}`)
+      fetch(`https://twatter-backend-api.herokuapp.com/api/twat_stats/${props.post.id}`)
         .then(data => data.json())
         .then(data => {
           console.log(data);
@@ -62,7 +62,7 @@ const PostButtons = (props) => {
       };
       
     if(postLiked) {
-      fetch(`/likes/${likeData.id}`, {
+      fetch(`https://twatter-backend-api.herokuapp.com/likes/${likeData.id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ const PostButtons = (props) => {
         setLikeCount(old => old -= 1);
       });
     } else {
-      fetch(`/likes`, {
+      fetch(`https://twatter-backend-api.herokuapp.com/likes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ const PostButtons = (props) => {
     const newPost = props.post;
     newPost.body = props.body;
 
-    fetch(`/twats/${newPost.id}`, {
+    fetch(`https://twatter-backend-api.herokuapp.com/twats/${newPost.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
