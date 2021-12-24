@@ -12,7 +12,6 @@ const Home = (props) => {
   useEffect(() => {
     fetch(`https://twatter-backend-api.herokuapp.com/api/get_home_feed/${currUser.id}`, {
       method: 'GET',
-      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
