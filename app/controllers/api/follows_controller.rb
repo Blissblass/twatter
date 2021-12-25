@@ -12,7 +12,7 @@ class Api::FollowsController < ApplicationController
   end
 
   def unfollow
-    @follow = Follow.find_by(Follower_id: params[:follower_id], followee_id: params[:followee_id])
+    @follow = Follow.find_by(follower_id: params[:follower_id], followee_id: params[:followee_id])
 
     if @follow 
       @follow.destroy
