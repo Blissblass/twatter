@@ -48,6 +48,7 @@ I also found that getting an efficient solution to saving the currently signed i
 * Liking and unliking for comments, this could be implement very easily with a polymorphic association.
 * Adding the ability to search for "Tweets".
 
+# Technologies used
 
-
+Bootstrap for fast and easy styling, along with some custom CSS. The layout uses a CSS Grid. The data for Users, Likes, Follows, Comments are saved to the database. The media (images/videos) for "Tweets" are saved to AWS S3. The images for the test users are taken from [https://thispersondoesnotexist.com](https://thispersondoesnotexist.com). 
  
