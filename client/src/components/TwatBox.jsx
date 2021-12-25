@@ -45,8 +45,6 @@ const TwatBox = props => {
 
       setPostMedia(media);
       setMediaURL(mediaURL);
-      console.log(media);
-      console.log(mediaURL);
     }
   };
 

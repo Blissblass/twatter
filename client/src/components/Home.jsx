@@ -19,7 +19,6 @@ const Home = (props) => {
     })
     .then(data => data.json())
       .then(data => {
-        console.log(data);
         setPosts(data);
         setLoading(false);
       });

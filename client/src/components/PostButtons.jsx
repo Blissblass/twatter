@@ -44,7 +44,6 @@ const PostButtons = (props) => {
       fetch(`https://twatter-backend-api.herokuapp.com/api/twat_stats/${props.post.id}`)
         .then(data => data.json())
         .then(data => {
-          console.log(data);
           setLikeCount(data.likes)
           setCommentsCount(data.comments);
         });
