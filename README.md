@@ -17,17 +17,17 @@ I also found that getting an efficient solution to saving the currently signed i
 ```javascript
    <Router>
     <UserContext.Provider value={{currUser, setCurrUser}}>
-      <Navibar />    
+      <Navibar />
       <ErrorContext.Provider value={{errors, setErrors}}>
           <div className="container">
-            <Switch>,
+            <Switch>
               <Route exact path="/home" render={(props) => <ProtectedRoute {...props} />} />
               <Route exact path="/login" render={(props) => <LoginRedirect {...props} />} />
               <Route exact path="/signUp" render={(props) => <SignupRedirect {...props} />} />
               <Route exact path="/user/:id" render={(props) => <ProfileRedirect {...props} />} />
-              <Route exact path="/user/:id/follows" render={(props) => <UserFollows {...props} />} />         
-              <Route exact path="/user/:id/followers" render={(props) => <UserFollowers {...props} />} />     
-              <Route exact path="/post/:id" render={(props) => <PostPage {...props} />} />  
+              <Route exact path="/user/:id/follows" render={(props) => <UserFollows {...props} />} />    
+              <Route exact path="/user/:id/followers" render={(props) => <UserFollowers {...props} />} />
+              <Route exact path="/post/:id" render={(props) => <PostPage {...props} />} />
               <Route exact path="*" render={(props) => <NoMatch {...props} />} />
             </Switch>
             <Errors />
