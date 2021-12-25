@@ -14,7 +14,7 @@ Another challenge I faced after this was getting Devise to return JSON as a resp
 
 I also found that getting an efficient solution to saving the currently signed in user was also a bit tougher than I expected. Normally, Devise creates a current_user variable that you can access anywhere in your Rails project, however, since this app used Rails in its API mode, current_user was unavailable. My first idea to solve this was to make a fetch call to get the user every time the page loads, but this was highly inefficient and would also lead to a lot of [prop drilling](https://www.geeksforgeeks.org/what-is-prop-drilling-and-how-to-avoid-it/), so after seeing how unmaintainable and inefficient this was, I instead decided to use a UserContext to store the signed in user.
 
-```
+```javascript
     <Router>
     <UserContext.Provider value={{currUser, setCurrUser}}>
       <Navibar />    
@@ -33,8 +33,8 @@ I also found that getting an efficient solution to saving the currently signed i
             <Errors />
           </div>
       </ErrorContext.Provider>
-      </UserContext.Provider>
-    </Router>
+     </UserContext.Provider>
+   </Router>
 ```
 *From here, we can then import UserContext and useContext to access the { currUser, setCurrUser } values saved in UserContext*
 
