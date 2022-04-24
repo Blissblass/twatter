@@ -4,7 +4,7 @@
 
 ![Twatter home screen](https://i.imgur.com/imgi0e3.png)
 
-Twatter is my first fullstack React app and also my student solution to App Academy's **Full Stack Project** course. My goal was to create a simple React/Rails app with User authentication features (using the Devise gem) along with Posting, Commenting, Following and Liking.
+Twatter is my first fullstack React app and also my olution to App Academy's **Full Stack Project** course. My goal was to create a simple React/Rails app with User authentication features (using the Devise gem) along with Posting, Commenting, Following and Liking.
 
 # Challenges
 
